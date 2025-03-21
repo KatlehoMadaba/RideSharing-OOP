@@ -1,0 +1,7 @@
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\obj\Debug\rideSharing.csproj.AssemblyReference.cache
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\obj\Debug\rideSharing.csproj.CoreCompileInputs.cache
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\bin\Debug\rideSharing.exe.config
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\bin\Debug\rideSharing.exe
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\bin\Debug\rideSharing.pdb
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\obj\Debug\rideSharing.exe
+C:\Users\Katleho Madaba\OneDrive - Boxfusion International\Desktop\Week 6\RideSharing\RideSharing-OOP\rideSharing\rideSharing\obj\Debug\rideSharing.pdb
