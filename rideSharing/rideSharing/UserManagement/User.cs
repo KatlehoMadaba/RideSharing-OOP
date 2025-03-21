@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 namespace RideSharing
 {
    //Parent class of the users Driver and Passenger
-    public abstract class User : IAuth
+    public class User : IAuth
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
-        
+
         public string Email { get; set; }
+
+        public string Role { get; set; }
         public User(string username, string password, string email)
         {
             Username = username;

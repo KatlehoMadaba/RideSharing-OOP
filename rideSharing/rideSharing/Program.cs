@@ -18,6 +18,7 @@ namespace RideSharing
                 Console.WriteLine("1.Enter number 1 to register as Passanger:");
                 Console.WriteLine("2.Enter number 2 to register as Driver:");
                 Console.WriteLine("3.Login");
+                Console.WriteLine("5.View the list");
                 Console.WriteLine("0.Exit");
                 option = Console.ReadLine();
 
@@ -63,6 +64,13 @@ namespace RideSharing
                                 Console.WriteLine("Welcome Driver");
                                 //Driver menu
                             }
+                        }
+                        break;
+                        case "5":
+                        Console.WriteLine("hii");
+                        foreach (var item in userManger.userList)
+                        {
+                            Console.WriteLine(item);
                         }
                         break;
                     case "0":

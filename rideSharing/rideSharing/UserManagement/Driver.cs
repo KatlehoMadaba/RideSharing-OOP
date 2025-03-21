@@ -16,6 +16,7 @@ namespace RideSharing
 
             Car = car;
             NoPlate = noPlate;
+            Role = "Driver";
         }
 
 
