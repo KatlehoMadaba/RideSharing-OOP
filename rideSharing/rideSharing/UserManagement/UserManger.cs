@@ -10,10 +10,10 @@ using Newtonsoft.Json;
 namespace RideSharing
 {
     //Management of the users onboarding operations 
-    class UserManger
+    public class UserManger
     {
-        //private List<User>userList= new List<User>();
-        public List<User> userList = new List<User>();
+        private List<User>userList= new List<User>();
+        //public List<User> userList = new List<User>();
         private const string FilePath = "users.json";
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RideSharing
 {
-    class Passenger:User
+    public class Passenger:User
     {
         public Passenger(string username, string email, string password):base(username,password,email) 
         {
