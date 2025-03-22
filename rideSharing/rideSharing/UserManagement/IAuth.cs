@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace RideSharing
 {
-    class Passenger:User
+    public interface IAuth
     {
-        public Passenger(string username, string email, string password):base(username,password,email) 
-        { 
-
-
-        }
+         bool Login(string username, string password); 
     }
 }

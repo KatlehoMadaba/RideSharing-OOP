@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Driver.cs" />
-    <Compile Include="IAuth.cs" />
-    <Compile Include="Passenger.cs" />
+    <Compile Include="Menus\MainMenu.cs" />
+    <Compile Include="Menus\PassengerMenu.cs" />
+    <Compile Include="RideRequestSystem\IRideable.cs" />
+    <Compile Include="RideRequestSystem\Ride.cs" />
+    <Compile Include="RideRequestSystem\RideSystem.cs" />
+    <Compile Include="UserManagement\Driver.cs" />
+    <Compile Include="UserManagement\IAuth.cs" />
+    <Compile Include="UserManagement\Passenger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserManger.cs" />
+    <Compile Include="UserManagement\User.cs" />
+    <Compile Include="UserManagement\UserManger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

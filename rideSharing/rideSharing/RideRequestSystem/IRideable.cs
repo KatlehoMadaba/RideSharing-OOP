@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RideSharing
+namespace rideSharing.RideRequestSystem
 {
-    interface IAuth
+    public interface IRideable
     {
-        bool Login(string username, string password); 
+       void requestRide();
+
+
     }
 }
