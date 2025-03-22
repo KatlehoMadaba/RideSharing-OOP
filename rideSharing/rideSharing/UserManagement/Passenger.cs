@@ -34,6 +34,7 @@ namespace RideSharing
             Console.WriteLine($"Ride added to history: {pickUp} to {dropOff}");
             Console.WriteLine($"Distance: {distance} km | Cost: {cost:C}");
             Console.WriteLine($"Remaining Wallet Balance: {WalletBalance:C}");
+
             UserManger.Instance.UpdateUserData();
         }
         public void DisplayRideHistory()
@@ -61,9 +62,14 @@ namespace RideSharing
         public void AddFunds(double amount)
         {
             WalletBalance += amount;
+            // Find and update the passenger in the user list (ensures persistence in UserManager)
+            var passengerInList = userList.OfType<Passenger>().FirstOrDefault(u => u.Username == this.Username);
+            if (passengerInList != null)
+            {
+                passengerInList.WalletBalance = WalletBalance;
+            }
             Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
-            UserManger userManager = new UserManger();
-            userManager.UpdateUserData();
+            UserManger.Instance.UpdateUserData();
         }
 
         public override void DisplayMenu()
