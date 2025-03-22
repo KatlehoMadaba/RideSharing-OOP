@@ -23,8 +23,6 @@ namespace rideSharing.RideRequestSystem
               "MIDRAND",
 
         };
-
-
         public string PickupLocation { get; set; }
 
         public string DropOffLocation { get; set; }

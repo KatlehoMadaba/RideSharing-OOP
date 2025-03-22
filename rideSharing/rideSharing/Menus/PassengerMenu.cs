@@ -9,9 +9,7 @@ namespace rideSharing.Menus
     {
         public static void PassengerMainMenu(Passenger passenger)
         {
-
             string option;
-
             do
             {
                 Console.WriteLine("Please pick an option:");
@@ -29,7 +27,7 @@ namespace rideSharing.Menus
                 {
                     case "1":
                         List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
-                        passenger.requestRide(locations);
+                        RideSystem.RequestRide(passenger,locations);
                         break;
                     case "2":
                         Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
@@ -40,15 +38,14 @@ namespace rideSharing.Menus
                         passenger.AddFunds(amount);
                         break;
                     case "4":
-                        passenger.DisplayTripHistory(passenger);
+                        passenger.DisplayRideHistory();
                         break;
                     case "5":
                         //Console.WriteLine("Please select the driver you want to rate:");
                         Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu");
                         Console.WriteLine("Please enter start between 1-5");
                         int stars = Convert.ToInt32(Console.ReadLine());
-
-                        RideSystem.rateDriver( passenger ,selectedDriver,stars);
+                        RideSystem.RateDriver( passenger ,selectedDriver,stars);
                         break;
                     case "0":
                         break;

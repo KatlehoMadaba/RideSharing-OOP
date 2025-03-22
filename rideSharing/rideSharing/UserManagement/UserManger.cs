@@ -9,9 +9,11 @@ namespace RideSharing
     //Management of the users onboarding operations 
     public class UserManger
     {
+        private static readonly UserManger _instance = new UserManger();
+
+        public static UserManger Instance => _instance;
 
         private const string FilePath = "users.json";
-
         public UserManger()
         {
             //Loading users from json file when program starts
@@ -27,7 +29,10 @@ namespace RideSharing
             var jsonData = JsonConvert.SerializeObject(User.userList, setting);
             File.WriteAllText(FilePath, jsonData);
         }
-
+        public void UpdateUserData()
+        {
+            saveUsers();
+        }
         private void loadUsers()
         {
             if (File.Exists(FilePath))
@@ -57,7 +62,7 @@ namespace RideSharing
                 var passenger = new Passenger(username, email, password,initialBalance);
                 User.userList.Add(passenger);
                 //saves to the json
-                saveUsers();
+                UpdateUserData();
                 Console.WriteLine("You have been registered!");
             }
 
@@ -76,7 +81,7 @@ namespace RideSharing
                 var driver = new Driver(username, email, password, car, noPlate);
                 User.userList.Add(driver);
                 //saves to the json
-                saveUsers();
+                UpdateUserData();
                 Console.WriteLine("You have been registered!");
             }
         }
@@ -98,5 +103,7 @@ namespace RideSharing
                 return null;
             }
         }
+        // Update the JSON whenever the user list changes (e.g., adding a trip)
+        
     }
 }
