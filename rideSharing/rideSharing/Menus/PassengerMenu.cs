@@ -31,6 +31,7 @@ namespace rideSharing.Menus
                         break;
                     case "2":
                         Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
+
                         break;
                     case "3":
                         Console.WriteLine("Please enter how much you want to add:");
