@@ -1,1 +1,1 @@
-[{"$type":"RideSharing.Passenger, rideSharing","Username":"Katleho","Password":"123","Email":"katlehomadaba44@gmail.com","Role":"Passenger"}]
+[{"$type":"RideSharing.Passenger, rideSharing","Locations":["CENTURION","PRETORIA","JHB","HATFIELD","MIDRAND"],"WalletBalance":500.0,"Username":"Katleho","Password":"123","Email":"katlehomadaba44@gmail.com","Role":"Passenger"}]

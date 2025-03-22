@@ -26,11 +26,11 @@ namespace rideSharing.Menus
                 switch (option)
                 {
                     case "1":
-                        passenger.requestRide();
+
                         break;
                     case "2":
                         string walletBalance = Console.ReadLine();
-                        Console.WriteLine($"This is your Balance:{Passenger.WalletBalance}");
+                        Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
                         break;
                     case "3":
                         int addFund = Convert.ToInt32(Console.ReadLine());
