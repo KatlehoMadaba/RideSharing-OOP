@@ -8,7 +8,7 @@ namespace rideSharing.RideRequestSystem
 {
     public interface IRideable
     {
-       void requestRide();
+       void requestRide(List<string>locations);
 
 
     }

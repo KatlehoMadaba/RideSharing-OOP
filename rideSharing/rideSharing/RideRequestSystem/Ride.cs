@@ -7,16 +7,23 @@ using RideSharing;
 
 namespace rideSharing.RideRequestSystem
 {
-    class Ride
+    public class Ride
     {
 
         public Passenger Passenger { get; set; }
 
         public Driver Driver { get; set; }
 
-        public List<string> PickupLocations { get; set; }
+        public List<string> Locations = new List<string>()
+            {
+              "CENTURION",
+              "PRETORIA",
+              "JHB",
+              "HATFIELD",
+              "MIDRAND",
 
-        public List<string> DropOffLocatiosns { get; set; }
+        };
+
 
         public string PickupLocation { get; set; }
 

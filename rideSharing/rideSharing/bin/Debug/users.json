@@ -1,1 +1,1 @@
-[{"$type":"RideSharing.Passenger, rideSharing","Locations":["CENTURION","PRETORIA","JHB","HATFIELD","MIDRAND"],"WalletBalance":500.0,"Username":"Katleho","Password":"123","Email":"katlehomadaba44@gmail.com","Role":"Passenger"}]
+[{"$type":"RideSharing.Passenger, rideSharing","TripHistory":[],"WalletBalance":500.0,"Username":"Katleho","Password":"123","Email":"katlehomadaba44@gmail.com","Role":"Passenger"},{"$type":"RideSharing.Passenger, rideSharing","TripHistory":[],"WalletBalance":12000.0,"Username":"Thembi","Password":"123","Email":"thembi@gmail.com","Role":"Passenger"}]

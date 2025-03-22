@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using rideSharing.RideRequestSystem;
 using RideSharing;
 namespace rideSharing.Menus
 {
@@ -26,19 +28,27 @@ namespace rideSharing.Menus
                 switch (option)
                 {
                     case "1":
-
+                        List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
+                        passenger.requestRide(locations);
                         break;
                     case "2":
-                        string walletBalance = Console.ReadLine();
                         Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
                         break;
                     case "3":
-                        int addFund = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Please enter how much you want to add:");
+                        double amount = Convert.ToDouble(Console.ReadLine());
+                        passenger.AddFunds(amount);
                         break;
                     case "4":
-                        string viewHistory = Console.ReadLine();
+                        passenger.DisplayTripHistory(passenger);
                         break;
                     case "5":
+                        //Console.WriteLine("Please select the driver you want to rate:");
+                        Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu");
+                        Console.WriteLine("Please enter start between 1-5");
+                        int stars = Convert.ToInt32(Console.ReadLine());
+
+                        RideSystem.rateDriver( passenger ,selectedDriver,stars);
                         break;
                     case "0":
                         break;

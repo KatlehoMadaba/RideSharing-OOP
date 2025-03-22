@@ -17,6 +17,12 @@ namespace RideSharing
         public string Email { get; set; }
 
         public string Role { get; set; }
+
+        public List<(string PickUp, string DropOff, double Distance, double Cost)> TripHistory = new List<(string, string, double, double)>();
+
+
+        public static List<User> userList = new List<User>();
+
         public User(string username, string password, string email)
         {
             Username = username;

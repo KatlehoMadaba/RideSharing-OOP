@@ -9,7 +9,6 @@ namespace RideSharing
     //Management of the users onboarding operations 
     public class UserManger
     {
-        public static List<User> userList = new List<User>();
 
         private const string FilePath = "users.json";
 
@@ -25,7 +24,7 @@ namespace RideSharing
             {
                 TypeNameHandling = TypeNameHandling.Objects
             };
-            var jsonData = JsonConvert.SerializeObject(userList, setting);
+            var jsonData = JsonConvert.SerializeObject(User.userList, setting);
             File.WriteAllText(FilePath, jsonData);
         }
 
@@ -39,7 +38,7 @@ namespace RideSharing
                     TypeNameHandling = TypeNameHandling.Objects
                 };
                 //loading the userList with data from the file 
-                userList = JsonConvert.DeserializeObject<List<User>>(jsonData,setting);
+                User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData,setting);
             }
         }
 
@@ -47,7 +46,7 @@ namespace RideSharing
         {
 
             //validating if user already exists in the list
-            if (userList.Any(user => user.Username == username))
+            if (User.userList.Any(user => user.Username == username))
             {
                 Console.WriteLine("Username already exists");
                 return;
@@ -56,7 +55,7 @@ namespace RideSharing
             {
                 //adds user to the list 
                 var passenger = new Passenger(username, email, password,initialBalance);
-                userList.Add(passenger);
+                User.userList.Add(passenger);
                 //saves to the json
                 saveUsers();
                 Console.WriteLine("You have been registered!");
@@ -66,7 +65,7 @@ namespace RideSharing
         public void registerDriver(string username, string email, string password, string car, string noPlate)
         {
             //validating if user already exists in the list
-            if (userList.Any(user => user.Username == username))
+            if (User.userList.Any(user => user.Username == username))
             {
                 Console.WriteLine("Username already exists");
                 return;
@@ -75,7 +74,7 @@ namespace RideSharing
             {
                 //adds user as an object to the user list 
                 var driver = new Driver(username, email, password, car, noPlate);
-                userList.Add(driver);
+                User.userList.Add(driver);
                 //saves to the json
                 saveUsers();
                 Console.WriteLine("You have been registered!");
@@ -88,7 +87,7 @@ namespace RideSharing
             //And the function Login returns an object of type User 
             //Login in method called on each User object in the Users list and passing the username and password as arguments
             //The login method should return true if the username and password have a match for that user or false
-            var user = userList.FirstOrDefault(u => u.Login(username, password));
+            var user = User.userList.FirstOrDefault(u => u.Login(username, password));
             if (user != null)
             {
                 return user;
