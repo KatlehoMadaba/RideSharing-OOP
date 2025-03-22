@@ -27,7 +27,9 @@ namespace RideSharing.Menus
             string email = Console.ReadLine();
             Console.WriteLine("Please your password:");
             string password = Console.ReadLine();
-            userManger.registerPassenger(username, email, password);
+            Console.WriteLine("Please enter how much you will be adding to your account:");
+            double intialBalance=Convert.ToDouble(Console.ReadLine());
+            userManger.registerPassenger(username, email, password, intialBalance);
         }
 
         public static void DisplayRegDriverMenu(UserManger userManger)
@@ -55,31 +57,12 @@ namespace RideSharing.Menus
             if (user != null)
             {
                 Console.WriteLine($"Welcome {username}");
-                //Passenger passenger = new Passenger(user);
                 user.DisplayMenu();
             }
             else
             {
                 Console.WriteLine("Invalid credintials.Please try again");
             }
-            //var user = userList.FirstOrDefault(u => u.Login(username, password));
-            ////Console.WriteLine($"This is the user type:stored {user.ToString()}");
-            //var userRole = userList.FirstOrDefault(u => u.Login(username, password));
-            //if (user != null)
-            //{
-            //    if (user is Passenger)
-            //    {
-            //        Console.WriteLine("Welcome Passanger.");
-            //        PassengerMenu.PassengerMainMenu();
-            //        Console.WriteLine("Returned from the passsenger menu");
-
-            //    }
-            //    else if (user is Driver)
-            //    {
-            //        Console.WriteLine("Welcome Driver");
-            //        //Driver menu
-            //    }
-            //}
         }
 
     }

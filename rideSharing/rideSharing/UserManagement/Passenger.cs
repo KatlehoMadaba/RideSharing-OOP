@@ -7,9 +7,9 @@ namespace RideSharing
 {
     public class Passenger : User, IRideable
     {
-        public static double WalletBalance { get; set; }
+        public double WalletBalance { get; set; }
 
-        static List<string> Locations = new List<string>()
+        public List<string> Locations = new List<string>()
             {
               "CENTURION",
               "PRETORIA",
@@ -18,10 +18,11 @@ namespace RideSharing
               "MIDRAND",
             };
 
-        public Passenger(string username, string email, string password) : base(username, password, email)
+
+        public Passenger(string username, string email, string password, double initialBalance) : base(username, password, email)
         {
             Role = "Passenger";
-            WalletBalance = 0.00;
+            WalletBalance = initialBalance;
         }
 
         //Checking for valid location input
@@ -87,18 +88,26 @@ namespace RideSharing
                     }
                     validDropOff = true;//if input is valid and different 
                 }
+
                 //Successuful
-                Console.WriteLine($"Ride request was succefull from {pickUp} to {dropOff} this is the available driver that will pick you up:");
+                //Calculating trip amount :
+
+
+
+
+                Console.WriteLine($"Ride request was successful from {pickUp} to {dropOff} this is the available driver that will pick you up:");
                 validRideRequest = true;
                 //Display list of drivers that are avaliable and use random function to pickone to come pick them up
             }
         }
-    
 
-    public override void DisplayMenu()
+        public override void DisplayMenu()
         {
             PassengerMenu.PassengerMainMenu(this);
         }
 
     }
+
+
+
 }

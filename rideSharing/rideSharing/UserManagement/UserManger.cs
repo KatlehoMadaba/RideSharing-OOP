@@ -20,7 +20,7 @@ namespace RideSharing
         }
         public void saveUsers()
         {
-            //User class is an abstract class
+            //User class is an abstract class so type handling is needed to to deserilize a list of an instance of a abstract class.
             var setting = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Objects
@@ -43,7 +43,7 @@ namespace RideSharing
             }
         }
 
-        public void registerPassenger(string username, string email, string password)
+        public void registerPassenger(string username, string email, string password, double initialBalance)
         {
 
             //validating if user already exists in the list
@@ -55,7 +55,7 @@ namespace RideSharing
             else
             {
                 //adds user to the list 
-                var passenger = new Passenger(username, email, password);
+                var passenger = new Passenger(username, email, password,initialBalance);
                 userList.Add(passenger);
                 //saves to the json
                 saveUsers();
