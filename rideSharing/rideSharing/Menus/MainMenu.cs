@@ -55,9 +55,14 @@ namespace RideSharing.Menus
             if (user != null)
             {
                 Console.WriteLine($"Welcome {username}");
-                PassengerMenu.PassengerMainMenu();
+                //Passenger passenger = new Passenger(user);
+                user.DisplayMenu();
             }
-
+            else
+            {
+                Console.WriteLine("Invalid credintials.Please try again");
+            }
+            //var user = userList.FirstOrDefault(u => u.Login(username, password));
             ////Console.WriteLine($"This is the user type:stored {user.ToString()}");
             //var userRole = userList.FirstOrDefault(u => u.Login(username, password));
             //if (user != null)

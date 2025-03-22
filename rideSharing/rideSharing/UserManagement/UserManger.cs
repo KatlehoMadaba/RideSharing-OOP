@@ -2,40 +2,44 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Newtonsoft.Json;
-using rideSharing.Menus;
 
 namespace RideSharing
 {
     //Management of the users onboarding operations 
     public class UserManger
     {
-        private List<User>userList= new List<User>();
-        //public List<User> userList = new List<User>();
+        public static List<User> userList = new List<User>();
+
         private const string FilePath = "users.json";
 
-
-        public UserManger() 
+        public UserManger()
         {
             //Loading users from json file when program starts
             loadUsers();
         }
         public void saveUsers()
         {
-            var jsonData = JsonConvert.SerializeObject(userList);
+            //User class is an abstract class
+            var setting = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            };
+            var jsonData = JsonConvert.SerializeObject(userList, setting);
             File.WriteAllText(FilePath, jsonData);
         }
 
         private void loadUsers()
         {
-            if (File.Exists(FilePath)) 
-            { 
-                var jsonData= File.ReadAllText(FilePath);
+            if (File.Exists(FilePath))
+            {
+                var jsonData = File.ReadAllText(FilePath);
+                var setting = new JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Objects
+                };
                 //loading the userList with data from the file 
-                userList=JsonConvert.DeserializeObject<List<User>>(jsonData);
+                userList = JsonConvert.DeserializeObject<List<User>>(jsonData,setting);
             }
         }
 
@@ -57,7 +61,7 @@ namespace RideSharing
                 saveUsers();
                 Console.WriteLine("You have been registered!");
             }
-            
+
         }
         public void registerDriver(string username, string email, string password, string car, string noPlate)
         {
@@ -73,11 +77,10 @@ namespace RideSharing
                 var driver = new Driver(username, email, password, car, noPlate);
                 userList.Add(driver);
                 //saves to the json
-                saveUsers() ;
+                saveUsers();
                 Console.WriteLine("You have been registered!");
             }
         }
-
         public User Login(string username, string password)
         {
             //u.Login is used as a condition for a matching user 
@@ -88,18 +91,6 @@ namespace RideSharing
             var user = userList.FirstOrDefault(u => u.Login(username, password));
             if (user != null)
             {
-                if (user is Passenger)
-                {
-                    Console.WriteLine($"Welcome Passanger {username}");
-                    PassengerMenu.PassengerMainMenu();
-
-                }
-                else if (user is Driver)
-                {
-                    Console.WriteLine($"Welcome Driver {username}");
-                    //Driver menu
-                }
-
                 return user;
             }
             else
@@ -108,7 +99,5 @@ namespace RideSharing
                 return null;
             }
         }
-
-
     }
 }

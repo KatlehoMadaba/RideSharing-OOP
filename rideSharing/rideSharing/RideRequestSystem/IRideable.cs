@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace rideSharing.RideRequestSystem
 {
-    interface IRideable
+    public interface IRideable
     {
-        void requestRide(string pick, string dropoff);
+       void requestRide();
 
 
     }

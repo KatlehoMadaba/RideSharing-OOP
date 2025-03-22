@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace RideSharing
 {
-   //Parent class of the users Driver and Passenger
-    public class User : IAuth
+    //Parent class of the users Driver and Passenger
+    public  abstract class User : IAuth
     {
+        //no static so that all objects have its own instance of these properties
         public string Username { get; set; }
 
         public string Password { get; set; }
@@ -23,9 +24,11 @@ namespace RideSharing
             Email = email;
         }
 
-        public virtual bool Login(string username, string password) 
-        { 
-            return Username==username && Password==password;
+        public virtual bool Login(string username, string password)
+        {
+            return Username == username && Password == password;
         }
+
+        public abstract void DisplayMenu();
     }
 }

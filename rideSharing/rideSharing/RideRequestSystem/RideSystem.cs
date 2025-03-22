@@ -9,7 +9,7 @@ namespace rideSharing.RideRequestSystem
 {
     public static class RideSystem
     {
-        public static void  requestRide(string pickup, string dropoff)
+        public static void requestRide(string pickup, string dropoff)
         {
             Console.WriteLine($"request a ride from {pickup} to {dropoff}");
         }

@@ -1,34 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using RideSharing;
 namespace rideSharing.Menus
 {
     //Displays thh passanger menu
-    public static class PassengerMenu
+    public class PassengerMenu
     {
-        //Checking for valid location input
-        private static bool IsValidLocation(string locationInput, List<string> locations)
-        {
-            if (!locations.Contains(locationInput))
-            {
-                Console.WriteLine($"Error:{locationInput} is a invalid location please try again");
-                return false;
-
-            }
-            return true;
-        }
-        public static void PassengerMainMenu()
+        public static void PassengerMainMenu(Passenger passenger)
         {
 
             string option;
-            List<string> Locations = new List<string>()
-            {
-              "CENTURION",
-              "PRETORIA",
-              "JHB",
-              "HATFIELD",
-              "MIDRAND",
-            };
 
             do
             {
@@ -46,65 +26,11 @@ namespace rideSharing.Menus
                 switch (option)
                 {
                     case "1":
-                        bool validRideRequest = false;
-                        while (!validRideRequest)
-                        {
-                            string pickUp = "";
-                            string dropOff = "";
-
-                            //Entering pickup location
-                            bool validPickUp = false;
-                            while (!validPickUp)
-                            {
-                                Console.WriteLine("\nPlease choose your pick up location");
-                                Console.WriteLine("===================================");
-                                foreach (var location in Locations)
-                                {
-                                    Console.WriteLine(location);
-                                }
-                                pickUp = Console.ReadLine().ToUpper();
-
-                                if (IsValidLocation(pickUp, Locations))
-                                {
-                                    validPickUp = true;
-
-                                }
-                            }
-
-                            //Entering drop off location
-                            bool validDropOff = false;
-                            while (!validDropOff)
-                            {
-                                Console.WriteLine("Please choose your dropoff location");
-                                Console.WriteLine("====================================");
-                                foreach (var location in Locations)
-                                {
-
-                                    Console.WriteLine(location);
-
-                                }
-                                dropOff = Console.ReadLine().ToUpper();
-
-                                if (!IsValidLocation(dropOff, Locations))
-                                {
-                                    continue; //if input is invalid return the main menu
-                                }
-                                if (pickUp == dropOff)
-                                {
-                                    Console.WriteLine("Sorry but your pickup and drop of location cannot be the same");
-                                    continue;//return the drop off menu again
-                                }
-                                validDropOff = true;//if input is valid and different 
-                            }
-                            //Successuful
-                            Console.WriteLine($"Ride request was succefull from {pickUp} to {dropOff} this is the available driver that will pick you up:");
-                            validRideRequest = true;
-                            //Display list of drivers that are avaliable and use random function to pickone to come pick them up
-                        }
+                        passenger.requestRide();
                         break;
                     case "2":
                         string walletBalance = Console.ReadLine();
-
+                        Console.WriteLine($"This is your Balance:{Passenger.WalletBalance}");
                         break;
                     case "3":
                         int addFund = Convert.ToInt32(Console.ReadLine());
