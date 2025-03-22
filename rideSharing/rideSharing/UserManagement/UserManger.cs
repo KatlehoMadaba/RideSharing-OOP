@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Newtonsoft.Json;
+using rideSharing.Menus;
 
 namespace RideSharing
 {
@@ -87,7 +88,18 @@ namespace RideSharing
             var user = userList.FirstOrDefault(u => u.Login(username, password));
             if (user != null)
             {
-                Console.WriteLine($"Welcome {username}");
+                if (user is Passenger)
+                {
+                    Console.WriteLine($"Welcome Passanger {username}");
+                    PassengerMenu.PassengerMainMenu();
+
+                }
+                else if (user is Driver)
+                {
+                    Console.WriteLine($"Welcome Driver {username}");
+                    //Driver menu
+                }
+
                 return user;
             }
             else

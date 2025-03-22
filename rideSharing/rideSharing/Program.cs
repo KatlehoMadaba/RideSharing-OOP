@@ -14,6 +14,7 @@ namespace RideSharing
             string option;
             do
             {
+                Console.WriteLine("====Welcome to ride sharing===");
                 MainMenu.DisplayMainMenu();
                 option = Console.ReadLine();
 
@@ -25,7 +26,7 @@ namespace RideSharing
                     case "2":
                         MainMenu.DisplayRegDriverMenu(userManger);
                         break;
-                    case "4":
+                    case "3":
                         MainMenu.DisplayLoginMenu(userManger);
                         break;
                     case "0":
