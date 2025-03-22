@@ -6,121 +6,40 @@ using rideSharing.RideRequestSystem;
 
 namespace RideSharing
 {
-    public class Passenger : User, IRideable
+    public class Passenger : User 
     {
         public double WalletBalance { get; set; }
-
-        private const double RatePerKm = 10.0;
 
         public Passenger(string username, string email, string password, double initialBalance) : base(username, password, email)
         {
             Role = "Passenger";
             WalletBalance = initialBalance;
         }
-
-        //Checking for valid location input
-        private static bool IsValidLocation(string locationInput, List<string> locations)
+      
+        public void AddRideToHistory(string pickUp, string dropOff, double distance, double cost)
         {
-            if (!locations.Contains(locationInput))
+            // Deduct the cost from the wallet
+            WalletBalance -= cost;
+            // Add the trip to the passenger's history
+            TripHistory.Add((pickUp, dropOff, distance, cost));
+
+            // Find and update the passenger in the user list (ensures persistence in UserManager)
+            var passengerInList = userList.OfType<Passenger>().FirstOrDefault(u => u.Username == this.Username);
+            if (passengerInList != null)
             {
-                Console.WriteLine($"Error:{locationInput} is a invalid location please try again");
-                return false;
-
+                passengerInList.TripHistory = TripHistory;
+                passengerInList.WalletBalance = WalletBalance;
             }
-            return true;
+
+            Console.WriteLine($"Ride added to history: {pickUp} to {dropOff}");
+            Console.WriteLine($"Distance: {distance} km | Cost: {cost:C}");
+            Console.WriteLine($"Remaining Wallet Balance: {WalletBalance:C}");
+
+            UserManger.Instance.UpdateUserData();
         }
-        public void requestRide(List<string> locations)
+        public void DisplayRideHistory()
         {
-            bool validRideRequest = false;
-            while (!validRideRequest)
-            {
-                string pickUp = "";
-                string dropOff = "";
-
-                //Entering pickup location
-                bool validPickUp = false; bool validDropOff = false;
-                while (!validPickUp)
-                {
-                    Console.WriteLine("\nPlease choose your pick up location");
-                    Console.WriteLine("===================================");
-                    foreach (var location in locations)
-                    {
-                        Console.WriteLine(location);
-                    }
-                    pickUp = Console.ReadLine().ToUpper();
-
-                    if (IsValidLocation(pickUp, locations))
-                    {
-                        validPickUp = true;
-
-                    }
-                }
-
-                //Entering drop off location
-                while (!validDropOff)
-                {
-                    Console.WriteLine("Please choose your dropoff location");
-                    Console.WriteLine("====================================");
-                    foreach (var location in locations)
-                    {
-
-                        Console.WriteLine(location);
-
-                    }
-                    dropOff = Console.ReadLine().ToUpper();
-
-                    if (!IsValidLocation(dropOff, locations))
-                    {
-                        continue; //if input is invalid return the main menu
-                    }
-                    if (pickUp == dropOff)
-                    {
-                        Console.WriteLine("Sorry but your pickup and drop of location cannot be the same");
-                        continue;//return the drop off menu again
-                    }
-                    validDropOff = true;//if input is valid and different 
-                }
-
-                //Successuful
-                //Calculating trip amount :
-                // Generate random distance for the trip
-                Random random = new Random();
-                double distance = random.Next(5, 101);
-
-                // Calculate the cost of the trip
-                double tripCost = distance * RatePerKm;
-
-                if (WalletBalance >= tripCost)
-                {
-                    WalletBalance -= tripCost;
-
-                    // Add trip to the history
-                    TripHistory.Add((pickUp, dropOff, distance, tripCost));
-                    Console.WriteLine("===========================");
-                    Console.WriteLine($"Ride request was successful!");
-                    Console.WriteLine($"From {pickUp} to {dropOff}");
-                    Console.WriteLine($"Distance: {distance} km | Cost: {tripCost:C}");
-                    Console.WriteLine($"Remaining Wallet Balance: {WalletBalance:C}");
-
-                    Console.WriteLine($"This is the available driver that will pick you up:");
-                    //Display list of drivers that are avaliable and use random function to pickone to come pick them up
-
-                    validRideRequest = true;
-                    //Display list of drivers that are avaliable and use random function to pickone to come pick them up
-                }
-                else
-                {
-                    Console.WriteLine($"Insufficient funds! Trip cost is {tripCost:C}, but your wallet balance is {WalletBalance:C}.");
-                    Console.WriteLine("Please add funds to your wallet and try again.");
-                    break;
-                }
-            }
-        }
-
-
-        public void DisplayTripHistory(User user)
-        {
-            if (user.TripHistory.Count == 0)
+            if (TripHistory.Count == 0)
             {
                 Console.WriteLine("\nNo trip history avaialble");
                 return;
@@ -129,27 +48,49 @@ namespace RideSharing
             {
                 Console.WriteLine("====================================");
                 Console.WriteLine("\nTrip History:");
-                foreach (var trip in user.TripHistory)
+                foreach (var trip in TripHistory)
                 {
                     Console.WriteLine($"From {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
                 }
                 // Total cost of all trips
-                double totalCost = user.TripHistory.Sum(t => t.Cost);
+                double totalCost = TripHistory.Sum(t => t.Cost);
                 Console.WriteLine($"Total Amount Spent: {totalCost:C}");
                 Console.WriteLine("====================================");
             }
 
+        }
+        public void AddFunds(double amount)
+        {
+            WalletBalance += amount;
+            // Find and update the passenger in the user list (ensures persistence in UserManager)
+            var passengerInList = userList.OfType<Passenger>().FirstOrDefault(u => u.Username == this.Username);
+            if (passengerInList != null)
+            {
+                passengerInList.WalletBalance = WalletBalance;
+            }
+            Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
+            UserManger.Instance.UpdateUserData();
         }
 
         public override void DisplayMenu()
         {
             PassengerMenu.PassengerMainMenu(this);
         }
-
-        public void AddFunds(double amount)
+        public static void RateDriver(Passenger passenger, Driver driver, int stars)
         {
-            WalletBalance += amount;
-            Console.WriteLine($"{amount:C}added to your wallet");
+            if (stars < 1 || stars > 5)
+            {
+                Console.WriteLine("This is an invalid rating your number must be between 1-5");
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Thank you for raring your driver {stars} stars");
+                driver.Ratings.Add(stars);
+                UserManger userManager = new UserManger();
+                userManager.UpdateUserData();
+            }
+           
         }
     }
 

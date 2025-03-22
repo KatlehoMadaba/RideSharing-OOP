@@ -3,44 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\menus\\passengermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\menus\\passengermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\riderequestsystem\\ridesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\riderequestsystem\\ridesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\ridesharing\\usermanagement\\usermanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\usermanagement\\usermanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\usermanagement\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\usermanagement\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\riderequestsystem\\ride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\riderequestsystem\\ride.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\usermanagement\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\usermanagement\\iauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\menus\\passengermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\menus\\passengermenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\usermanagement\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\usermanagement\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\riderequestsystem\\irideable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\riderequestsystem\\irideable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\menus\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\menus\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|c:\\users\\katleho madaba\\onedrive - boxfusion international\\desktop\\week 6\\ridesharing\\ridesharing-oop\\ridesharing\\ridesharing\\usermanagement\\usermanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9DC7D686-48B9-4354-B03B-848A00528C7B}|rideSharing\\RideSharing.csproj|solutionrelative:ridesharing\\usermanagement\\usermanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,142 +26,62 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserManger.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\UserManger.cs",
-              "RelativeDocumentMoniker": "rideSharing\\UserManagement\\UserManger.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\UserManger.cs",
-              "RelativeToolTip": "rideSharing\\UserManagement\\UserManger.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAkwDUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T06:48:46.93Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\User.cs",
-              "RelativeDocumentMoniker": "rideSharing\\UserManagement\\User.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\User.cs",
-              "RelativeToolTip": "rideSharing\\UserManagement\\User.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T16:28:28.3Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RideSystem.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\RideSystem.cs",
-              "RelativeDocumentMoniker": "rideSharing\\RideRequestSystem\\RideSystem.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\RideSystem.cs",
-              "RelativeToolTip": "rideSharing\\RideRequestSystem\\RideSystem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T16:52:25.567Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Ride.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\Ride.cs",
-              "RelativeDocumentMoniker": "rideSharing\\RideRequestSystem\\Ride.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\Ride.cs",
-              "RelativeToolTip": "rideSharing\\RideRequestSystem\\Ride.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBgAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T16:41:10.452Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IRideable.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\IRideable.cs",
-              "RelativeDocumentMoniker": "rideSharing\\RideRequestSystem\\IRideable.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\RideRequestSystem\\IRideable.cs",
-              "RelativeToolTip": "rideSharing\\RideRequestSystem\\IRideable.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T16:30:05.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IAuth.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\IAuth.cs",
-              "RelativeDocumentMoniker": "rideSharing\\UserManagement\\IAuth.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\IAuth.cs",
-              "RelativeToolTip": "rideSharing\\UserManagement\\IAuth.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T16:28:23.814Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Passenger.cs",
               "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\Passenger.cs",
               "RelativeDocumentMoniker": "rideSharing\\UserManagement\\Passenger.cs",
               "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\Passenger.cs",
               "RelativeToolTip": "rideSharing\\UserManagement\\Passenger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T15:58:47.003Z",
+              "WhenOpened": "2025-03-22T18:46:30.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PassengerMenu.cs",
               "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Menus\\PassengerMenu.cs",
               "RelativeDocumentMoniker": "rideSharing\\Menus\\PassengerMenu.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Menus\\PassengerMenu.cs*",
-              "RelativeToolTip": "rideSharing\\Menus\\PassengerMenu.cs*",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAQwF8AAAAiAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Menus\\PassengerMenu.cs",
+              "RelativeToolTip": "rideSharing\\Menus\\PassengerMenu.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T15:40:48.639Z",
+              "WhenOpened": "2025-03-22T18:46:23.842Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "MainMenu.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Menus\\MainMenu.cs",
-              "RelativeDocumentMoniker": "rideSharing\\Menus\\MainMenu.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Menus\\MainMenu.cs",
-              "RelativeToolTip": "rideSharing\\Menus\\MainMenu.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAUwDkAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\User.cs",
+              "RelativeDocumentMoniker": "rideSharing\\UserManagement\\User.cs",
+              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\User.cs",
+              "RelativeToolTip": "rideSharing\\UserManagement\\User.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T15:34:03.806Z",
+              "WhenOpened": "2025-03-22T18:46:19.579Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Program.cs",
-              "RelativeDocumentMoniker": "rideSharing\\Program.cs",
-              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\Program.cs",
-              "RelativeToolTip": "rideSharing\\Program.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAA2wBEAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "UserManger.cs",
+              "DocumentMoniker": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\UserManger.cs",
+              "RelativeDocumentMoniker": "rideSharing\\UserManagement\\UserManger.cs",
+              "ToolTip": "C:\\Users\\Katleho Madaba\\OneDrive - Boxfusion International\\Desktop\\Week 6\\RideSharing\\RideSharing-OOP\\rideSharing\\rideSharing\\UserManagement\\UserManger.cs",
+              "RelativeToolTip": "rideSharing\\UserManagement\\UserManger.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T15:33:56.488Z",
+              "WhenOpened": "2025-03-22T16:51:03.973Z",
               "EditorCaption": ""
             }
           ]

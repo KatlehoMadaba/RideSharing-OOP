@@ -9,7 +9,7 @@ namespace RideSharing
     //Parent class of the users Driver and Passenger
     public  abstract class User : IAuth
     {
-        //no static so that all objects have its own instance of these properties
+        //not static so that all objects have its own instance of these properties
         public string Username { get; set; }
 
         public string Password { get; set; }
@@ -19,7 +19,6 @@ namespace RideSharing
         public string Role { get; set; }
 
         public List<(string PickUp, string DropOff, double Distance, double Cost)> TripHistory = new List<(string, string, double, double)>();
-
 
         public static List<User> userList = new List<User>();
 
