@@ -14,6 +14,7 @@ namespace RideSharing
         public bool isAvailable { get; set; }
         public List<int> Ratings { get; set; } = new List<int>();
         public string CurrentLocation { get; set; }
+        public double Earnings { get; set; }
         public Driver(string username, string email, string password, string car, string noPlate, string currentLocation) : base(username, password, email)
         {
             Car = car;
@@ -21,6 +22,7 @@ namespace RideSharing
             Role = "Driver";
             isAvailable = true;
             CurrentLocation = currentLocation;
+            Earnings = 0;
         }
 
         public override void DisplayMenu()
@@ -36,21 +38,34 @@ namespace RideSharing
             return Ratings.Average();
         }
 
-        public void UpdateLocation()
+        public void UpdateLocation(string newLocation)
         {
-
+            if (!string.IsNullOrEmpty(newLocation))
+            {
+                CurrentLocation = newLocation;
+                Console.WriteLine($"Location updated to: {CurrentLocation}");
+            }
         }
-        public void UpdateAvailablityStatus()
+        public void UpdateAvailablityStatus(bool availabilty)
         {
-
+            isAvailable = availabilty;
+            Console.WriteLine($"Driver availability updated to: {isAvailable}");
         }
-        public void AcceptARide()
+        public void AcceptARide(string rideDetails)
         {
-
+            if (!isAvailable)
+            {
+                Console.WriteLine($"Accpected ride:{rideDetails}");
+                isAvailable = false;
+            }
+            else
+            {
+                Console.WriteLine("Driver is currrent unavailable");
+            }
         }
-        public void ViewYourEarnings()
+        public void ViewDriverEarnings()
         {
-
+            Console.WriteLine($"Total earnings: {Earnings:C}");
         }
 
 

@@ -26,12 +26,10 @@ namespace rideSharing.Menus
                 switch (option)
                 {
                     case "1":
-                        List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
-                        RideSystem.RequestRide(passenger,locations);
+                        RideSystem.RequestRide(passenger);
                         break;
                     case "2":
                         Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
-
                         break;
                     case "3":
                         Console.WriteLine("Please enter how much you want to add:");
@@ -46,7 +44,7 @@ namespace rideSharing.Menus
                         Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu","hhj");
                         Console.WriteLine("Please enter start between 1-5");
                         int stars = Convert.ToInt32(Console.ReadLine());
-                        RideSystem.RateDriver( passenger ,selectedDriver,stars);
+                        passenger.RateDriver( passenger ,selectedDriver,stars);
                         break;
                     case "0":
                         break;

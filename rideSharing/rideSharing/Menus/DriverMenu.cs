@@ -39,6 +39,9 @@ namespace rideSharing.Menus
                     case "6":
                         RideRequestSystem.RideSystem.DriversCurrentLocation(driver);
                         break;
+                    case "7":
+                        RideRequestSystem.RideSystem.DisplayDriversHistory(driver);
+                        break;
                     case "0":
                         break;
                     default:

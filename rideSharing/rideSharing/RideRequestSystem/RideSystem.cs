@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using RideSharing;
 
 namespace rideSharing.RideRequestSystem
@@ -8,82 +9,92 @@ namespace rideSharing.RideRequestSystem
     //  Any thing the system returns to the user whether driver or passenger
     public class RideSystem
     {
-        private static readonly double ratePerKm = 10.0;
 
-        public static List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
-        public static void RateDriver(Passenger passenger, Driver driver, int stars)
-        {
-            try
-            {
-                if (stars < 1 || stars > 5)
-                {
-                    Console.WriteLine("This is an invalid rating your number must be between 1-5");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine($"Thank you for raring your driver {stars} stars");
-                    driver.Ratings.Add(stars);
-                    UserManger.Instance.UpdateUserData();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while rating the driver: + {ex}.Message");
-            }
-        }
-        public static void RequestRide(Passenger passenger, List<string> locations)
+        //public static List<string> locations = RideLocations.ValidLocations;
+
+        public static List<string> locations = Ride.ValidLocations;
+
+        public static void RequestRide(Passenger passenger)
         {
             // Get valid pick-up location
             string pickUp = GetValidLocation("Please choose your pick up location:", locations);
             // Get valid drop-off location and ensure it is not the same as pick-up.
-            string dropOff = GetValidLocation("Please choose your drop off location:", locations);
-
-            while (dropOff.Equals(pickUp.ToUpper()))
+            string dropOff;
+            do
             {
-                Console.WriteLine("Sorry, your pick-up and drop off locations cannot be the same.");
-                dropOff = GetValidLocation("Please choose a different drop off location:", locations);
-            }
+                dropOff = GetValidLocation("Please choose your drop-off location:", locations);
+                if (pickUp.Equals(dropOff, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine("Sorry, your pick-up and drop-off locations cannot be the same. Please try again.");
+                }
+            } while (pickUp.Equals(dropOff, StringComparison.OrdinalIgnoreCase));
 
-            //Calculate trip amount
-            var (distance, tripCost) = CalculateTripAmount();
+
+            // Create a new Ride object and calculate trip amount
+            var ride = new Ride(passenger, null, pickUp, dropOff);
+        
+            double tripCost = ride.CalculateTripCost();
+
 
             if (passenger.WalletBalance < tripCost)
             {
                 Console.WriteLine($"Insufficient funds! Trip cost is {tripCost:C}, but your wallet balance is {passenger.WalletBalance:C}.");
+                Console.WriteLine("Please top up your wallet to proceed with the ride request.");
                 return;
             }
+            passenger.WalletBalance -= tripCost; // Deduct trip cost from wallet
+
             //Filter and assign an available driver based on the pickup location.
             Driver assignedDriver = AssignDriverForPickup(pickUp);
             if (assignedDriver == null)
             {
-                Console.WriteLine($"No available drivers at your pick-up location: {pickUp}");
+                Console.WriteLine($"No available drivers at your pick-up location: {pickUp}.Please try again later");
                 return;
             }
-            else
-            {
-                Console.WriteLine($"Driver assigned: {assignedDriver.Username}, Car: {assignedDriver.Car}, Number Plate: {assignedDriver.NoPlate}");
-            }
-            passenger.AddRideToHistory(pickUp, dropOff, distance, tripCost);
-            Console.WriteLine($"Ride request completed successfully! From {pickUp} to {dropOff} at the cost of {tripCost:C}");
-            Console.WriteLine("=====================================");
-            UserManger.Instance.UpdateUserData();
+            //setting the driver in the ride object
+            ride.Driver = assignedDriver;
 
+            assignedDriver.AddTripToHistory(ride);
+            passenger.AddTripToHistory(ride);
+            // Display ride details
+            Console.WriteLine($"Ride request completed successfully!");
+            Console.WriteLine($"Driver assigned: {assignedDriver.Username}, Car: {assignedDriver.Car}, Number Plate: {assignedDriver.NoPlate}");
+            Console.WriteLine($"From {pickUp} to {dropOff} at the cost of {tripCost:C}");
+            Console.WriteLine($"Distance: {ride.Distance} km");
+            UserManger.Instance.UpdateUserData();
+            Console.WriteLine("=====================================");
+            //updating th system
         }
-        private static (double tripDistance, double tripCost) CalculateTripAmount()
+        public static void DisplayDriversHistory(Driver driver)
         {
             try
             {
-                Random random = new Random();
-                double distance = random.Next(5, 101);// Random distance between 5 and 100 km
-                double cost = distance * ratePerKm;
-                return (distance, cost);
+                var driversObject = User.userList.OfType<Driver>().FirstOrDefault(u => u.Username == driver.Username);
+                //Checking first if this driver exists
+                if (driversObject == null)
+                {
+                    Console.WriteLine("Driver not found");
+                    return;
+                }
+                //Checking if this driver has history
+                if (driversObject.TripHistory == null || driversObject.TripHistory.Count == 0)
+                {
+                    Console.WriteLine("No history found for this driver");
+                    return;
+                }
+                Console.WriteLine("Here is your drip history");
+                Console.WriteLine("=============================================");
+                foreach (var trip in driversObject.TripHistory)
+                {
+                    Console.WriteLine($"Passenger: {trip.Passenger.Username}| {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
+                }
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred while calculating trip amount: " + ex.Message);
-                return (0, 0);
+                Console.WriteLine($"Sorry but there was a problem loading the history:{ex.Message}");
             }
+
         }
         private static string GetValidLocation(string prompt, List<string> locations)
         {
@@ -91,12 +102,18 @@ namespace rideSharing.RideRequestSystem
             {
                 Console.WriteLine(prompt);
                 Console.WriteLine("====================================");
-                foreach (var location in locations)
-                {
-                    Console.WriteLine(location);
-                }
+                Console.WriteLine("The avaliable locations are:");
+                Console.WriteLine(string.Join(", ", locations));
+                //foreach (var location in locations)
+                //{
+                //    Console.WriteLine(location);
+                //}
                 string input = Console.ReadLine()?.ToUpper();
-                if (IsValidLocation(input, locations))
+                //if (IsValidLocation(input, locations))
+                //{
+                //    return input;
+                //}
+                if (!string.IsNullOrWhiteSpace(input) && locations.Contains(input))
                 {
                     return input;
                 }
@@ -106,6 +123,7 @@ namespace rideSharing.RideRequestSystem
                 }
             }
         }
+
         private static Driver AssignDriverForPickup(string pickUp)
         {
             try
@@ -129,10 +147,26 @@ namespace rideSharing.RideRequestSystem
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred while assigning a driver: {ex}.Message");
+                Console.WriteLine($"An error occurred while assigning a driver: {ex.Message}");
                 return null;
             }
 
+        }
+    
+        private static double DriversEarnings(Ride ride)
+        {
+            try
+            {
+                double earnings = ride.TripCost * 0.5;
+                ride.Driver.Earnings += earnings;
+                return earnings;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred while calculating drivers earnings:{ex.Message}");
+                return 0;
+            }
         }
         public static string DriversCurrentLocation(Driver driver)
         {
@@ -156,16 +190,6 @@ namespace rideSharing.RideRequestSystem
                 Console.WriteLine($"An error occurred while setting the driver's current location:{ex}.Message");
                 return null;
             }
-        }
-        private static bool IsValidLocation(string locationInput, List<string> locations)
-        {
-            if (!locations.Contains(locationInput))
-            {
-                Console.WriteLine($"Error:{locationInput} is a invalid location please try again");
-                return false;
-
-            }
-            return true;
         }
         public static bool DisplayAvaibleDrivers()
         {
@@ -194,5 +218,15 @@ namespace rideSharing.RideRequestSystem
                 return false;
             }
         }
+        public static void AddHistoryForDriver(Driver driver,Passenger passenger,string pickup,string dropOff,double distance,double earnings)
+        {
+            var trip = new Ride(passenger, driver, pickup, dropOff)
+            {
+                Distance = distance,
+                TripCost = earnings
+            };
+            driver.TripHistory.Add(trip);
+        }
+
     }
 }
