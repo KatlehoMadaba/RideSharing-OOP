@@ -10,6 +10,7 @@ namespace rideSharing.RideRequestSystem
     {
         private static readonly double ratePerKm = 10.0;
 
+        public static List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
         public static void RateDriver(Passenger passenger, Driver driver, int stars)
         {
             if (stars < 1 || stars > 5)
@@ -25,6 +26,7 @@ namespace rideSharing.RideRequestSystem
             }
 
         }
+ 
         public static void RequestRide(Passenger passenger, List<string> locations)
         {
             bool validRideRequest = false;
@@ -121,7 +123,7 @@ namespace rideSharing.RideRequestSystem
                     foreach (var driver in availableDrivers)
                     {
                         Console.WriteLine("Driver The details of driver to pick you up:");
-                        Console.WriteLine($"Name: {driver.Username},Car:{driver.Car},Number Plate{driver.NoPlate}");
+                        Console.WriteLine($"Name: {driver.Username}, Car: {driver.Car}, Number Plate: {driver.NoPlate}");
                     }
                     return true;
                 }
@@ -136,6 +138,31 @@ namespace rideSharing.RideRequestSystem
                 Console.WriteLine($"Sorry there was an error loading the drivers :{ex.Message}");
                 return false;
             }
+        }
+        public static string DriversCurrentLocation(Driver driver)
+        {
+            Console.WriteLine("Please choose your current location:");
+            foreach (var location in locations)
+            {
+                Console.WriteLine(location);
+            }
+            string selectedLocation = Console.ReadLine()?.ToUpper();
+            while (!IsValidLocation(selectedLocation,locations))
+            {
+                foreach (var location in locations)
+                {
+                    Console.WriteLine(location);
+                }
+            selectedLocation = Console.ReadLine()?.ToUpper();
+            }
+            var driversLocationList = User.userList.OfType<Driver>().FirstOrDefault(u => u.Username == driver.Username);
+            if (driversLocationList != null)
+            {
+                driversLocationList.CurrentLocation = selectedLocation;
+
+            }
+            UserManger.Instance.UpdateUserData();
+            return selectedLocation;    
         }
         public static void ViewRequests()
         {

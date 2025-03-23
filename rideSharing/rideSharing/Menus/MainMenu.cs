@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using rideSharing.Menus;
+using rideSharing.RideRequestSystem;
 using RideSharing;
 
 namespace RideSharing.Menus
@@ -11,7 +12,7 @@ namespace RideSharing.Menus
 
     public static class MainMenu
     {
-        
+        //The content displayed for each users main menu
         public static void DisplayMainMenu()
         {
             Console.WriteLine("1.Enter number 1 to register as Passanger:");
@@ -44,7 +45,10 @@ namespace RideSharing.Menus
             string car = Console.ReadLine();
             Console.WriteLine("Please enter number plate");
             string noPlate = Console.ReadLine();
-            userManger.registerDriver(username, email, password, car, noPlate);
+            Console.Write("Please choose your current location:");
+            var tempdriver = new Driver(username, email, password, car, noPlate,string.Empty);
+            string currentLocation = RideSystem.DriversCurrentLocation(tempdriver);
+            userManger.registerDriver(username, email, password, car, noPlate,currentLocation);
         }
 
         public static void DisplayLoginMenu(UserManger userManger)

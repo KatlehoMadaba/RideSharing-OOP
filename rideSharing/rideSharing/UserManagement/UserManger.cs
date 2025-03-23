@@ -70,7 +70,7 @@ namespace RideSharing
             }
 
         }
-        public void registerDriver(string username, string email, string password, string car, string noPlate)
+        public void registerDriver(string username, string email, string password, string car, string noPlate,string currentLocation)
         {
             //validating if user already exists in the list
             if (User.userList.Any(user => user.Username == username))
@@ -81,7 +81,7 @@ namespace RideSharing
             else
             {
                 //adds user as an object to the user list 
-                var driver = new Driver(username, email, password, car, noPlate);
+                var driver = new Driver(username, email, password, car, noPlate,currentLocation);
                 User.userList.Add(driver);
                 //updates the json
                 UpdateUserData();
