@@ -5,9 +5,10 @@ using RideSharing;
 
 namespace rideSharing.RideRequestSystem
 {
+    //  Any thing the sdriver returns to the user whether driver or passenger
     public class RideSystem
     {
-        static double RatePerKm = 10.0;
+        private static readonly double ratePerKm = 10.0;
 
         public static void RateDriver(Passenger passenger, Driver driver, int stars)
         {
@@ -20,6 +21,7 @@ namespace rideSharing.RideRequestSystem
             {
                 Console.WriteLine($"Thank you for raring your driver {stars} stars");
                 driver.Ratings.Add(stars);
+                UserManger.Instance.UpdateUserData();
             }
 
         }
@@ -74,26 +76,29 @@ namespace rideSharing.RideRequestSystem
                     }
                     validDropOff = true;//if input is valid and different 
                 }
-
-                //Successuful
                 //Calculating trip amount :
                 Random random = new Random();
                 double distance = random.Next(5, 101);// Generate random distance for the trip between 5 to 100km
-                double tripCost = distance * RatePerKm;
+                double tripCost = distance * ratePerKm;
 
                 if (passenger.WalletBalance < tripCost)
                 {
                     Console.WriteLine($"Insufficient funds! Trip cost is {tripCost:C}, but your wallet balance is {passenger.WalletBalance:C}.");
                     return;
                 }
-                passenger.AddRideToHistory(pickUp, dropOff, distance, tripCost);
-                Console.WriteLine($"Ride request completed successfully! From {pickUp} to {dropOff}");
-                UserManger userManager = new UserManger();
-                userManager.UpdateUserData();
-                break;
+                if (!DisplayAvaibleDrivers())
+                {
+                    return;//exit the request if there are no available drivers
+                }
+                else
+                {
+                    passenger.AddRideToHistory(pickUp, dropOff, distance, tripCost);
+                    Console.WriteLine($"Ride request completed successfully! From {pickUp} to {dropOff}");
+                    Console.WriteLine("=====================================");
+                    UserManger.Instance.UpdateUserData();
+                    break;
+                }
             }
-
-
         }
         private static bool IsValidLocation(string locationInput, List<string> locations)
         {
@@ -105,7 +110,33 @@ namespace rideSharing.RideRequestSystem
             }
             return true;
         }
-
+        public static bool DisplayAvaibleDrivers()
+        {
+            try
+            {
+                var availableDrivers = UserManger.LoadAvaibleDrivers();
+                Console.WriteLine("=====================================");
+                if (availableDrivers.Count > 0)
+                {
+                    foreach (var driver in availableDrivers)
+                    {
+                        Console.WriteLine("Driver The details of driver to pick you up:");
+                        Console.WriteLine($"Name: {driver.Username},Car:{driver.Car},Number Plate{driver.NoPlate}");
+                    }
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry there are no driver available right now");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sorry there was an error loading the drivers :{ex.Message}");
+                return false;
+            }
+        }
         public static void ViewRequests()
         {
 
