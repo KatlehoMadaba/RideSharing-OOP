@@ -6,14 +6,17 @@ using Newtonsoft.Json;
 
 namespace RideSharing
 {
-    //Management of the users onboarding operations both driver and passenger
+    //Management of the resources of and for both driver and passenger
     public class UserManger
     {
         private static readonly UserManger _instance = new UserManger();
 
         public static UserManger Instance => _instance;
 
+        public static List<Driver> availableDriversList { get; private set; } = new List<Driver>();
+
         private const string FilePath = "users.json";
+
         public UserManger()
         {
             //Loading users from json file when program starts
@@ -43,10 +46,10 @@ namespace RideSharing
                     TypeNameHandling = TypeNameHandling.Objects
                 };
                 //loading the userList with data from the file 
-                User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData,setting);
+                User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData, setting);
             }
         }
- 
+
         public void registerPassenger(string username, string email, string password, double initialBalance)
         {
 
@@ -59,7 +62,7 @@ namespace RideSharing
             else
             {
                 //adds user to the list 
-                var passenger = new Passenger(username, email, password,initialBalance);
+                var passenger = new Passenger(username, email, password, initialBalance);
                 User.userList.Add(passenger);
                 //saves to the json
                 UpdateUserData();
@@ -80,7 +83,7 @@ namespace RideSharing
                 //adds user as an object to the user list 
                 var driver = new Driver(username, email, password, car, noPlate);
                 User.userList.Add(driver);
-                //saves to the json
+                //updates the json
                 UpdateUserData();
                 Console.WriteLine("You have been registered!");
             }
@@ -103,7 +106,20 @@ namespace RideSharing
                 return null;
             }
         }
-        // Update the JSON whenever the user list changes (e.g., adding a trip)
         
+        public static List<Driver> LoadAvaibleDrivers()
+        {
+            availableDriversList = User.userList.OfType<Driver>().Where(d => d.isAvailable).ToList();
+
+            if (availableDriversList.Count > 0)
+            {
+                Console.WriteLine("There is drivers in the list");
+            }
+            else
+            {
+                Console.WriteLine("Drivers list is empty");
+            }
+            return availableDriversList;
+        }
     }
 }
