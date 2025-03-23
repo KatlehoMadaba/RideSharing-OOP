@@ -15,7 +15,6 @@ namespace RideSharing
             Role = "Passenger";
             WalletBalance = initialBalance;
         }
-      
         public void AddRideToHistory(string pickUp, string dropOff, double distance, double cost)
         {
             // Deduct the cost from the wallet
@@ -71,7 +70,6 @@ namespace RideSharing
             Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
             UserManger.Instance.UpdateUserData();
         }
-
         public override void DisplayMenu()
         {
             PassengerMenu.PassengerMainMenu(this);

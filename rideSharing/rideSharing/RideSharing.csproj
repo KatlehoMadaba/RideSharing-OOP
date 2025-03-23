@@ -53,6 +53,7 @@
     <Compile Include="RideRequestSystem\Ride.cs" />
     <Compile Include="RideRequestSystem\RideSystem.cs" />
     <Compile Include="UserManagement\Driver.cs" />
+    <Compile Include="UserManagement\DriverMangement\DriverMangement.cs" />
     <Compile Include="UserManagement\IAuth.cs" />
     <Compile Include="UserManagement\Passenger.cs" />
     <Compile Include="Program.cs" />

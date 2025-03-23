@@ -19,6 +19,8 @@ namespace rideSharing.Menus
                 Console.WriteLine("3.Compelete a ride");
                 Console.WriteLine("4.View Earnings");
                 Console.WriteLine("5.Update avaliablity status");
+                Console.WriteLine("6.Update your current location");
+                Console.WriteLine("7.View trip history");
                 Console.WriteLine("0.Logout");
                 option = Console.ReadLine();
                 switch (option)
@@ -33,6 +35,9 @@ namespace rideSharing.Menus
                     case "4":
                         break;
                     case "5":
+                        break;
+                    case "6":
+                        RideRequestSystem.RideSystem.DriversCurrentLocation(driver);
                         break;
                     case "0":
                         break;

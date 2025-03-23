@@ -43,7 +43,7 @@ namespace rideSharing.Menus
                         break;
                     case "5":
                         //Console.WriteLine("Please select the driver you want to rate:");
-                        Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu");
+                        Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu","hhj");
                         Console.WriteLine("Please enter start between 1-5");
                         int stars = Convert.ToInt32(Console.ReadLine());
                         RideSystem.RateDriver( passenger ,selectedDriver,stars);
