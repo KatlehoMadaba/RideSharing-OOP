@@ -9,29 +9,11 @@ namespace rideSharing.RideRequestSystem
     //  Any thing the system returns to the user whether driver or passenger
     public class RideSystem
     {
-      
-        public static List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
-        public static void RateDriver(Passenger passenger, Driver driver, int stars)
-        {
-            try
-            {
-                if (stars < 1 || stars > 5)
-                {
-                    Console.WriteLine("This is an invalid rating your number must be between 1-5");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine($"Thank you for raring your driver {stars} stars");
-                    driver.Ratings.Add(stars);
-                    UserManger.Instance.UpdateUserData();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while rating the driver: + {ex}.Message");
-            }
-        }
+
+        //public static List<string> locations = RideLocations.ValidLocations;
+
+        public static List<string> locations = Ride.ValidLocations;
+
         public static void RequestRide(Passenger passenger)
         {
             // Get valid pick-up location
@@ -50,7 +32,9 @@ namespace rideSharing.RideRequestSystem
 
             // Create a new Ride object and calculate trip amount
             var ride = new Ride(passenger, null, pickUp, dropOff);
-            double tripCost = CalculateTripAmount(ride);
+        
+            double tripCost = ride.CalculateTripCost();
+
 
             if (passenger.WalletBalance < tripCost)
             {
@@ -58,6 +42,7 @@ namespace rideSharing.RideRequestSystem
                 Console.WriteLine("Please top up your wallet to proceed with the ride request.");
                 return;
             }
+            passenger.WalletBalance -= tripCost; // Deduct trip cost from wallet
 
             //Filter and assign an available driver based on the pickup location.
             Driver assignedDriver = AssignDriverForPickup(pickUp);
@@ -66,48 +51,50 @@ namespace rideSharing.RideRequestSystem
                 Console.WriteLine($"No available drivers at your pick-up location: {pickUp}.Please try again later");
                 return;
             }
+            //setting the driver in the ride object
             ride.Driver = assignedDriver;
-            passenger.WalletBalance -= tripCost; // Deduct trip cost from wallet
-            AddHistoryForDriver(assignedDriver, passenger, pickUp, dropOff, ride.Distance, tripCost);
-            passenger.AddRideToHistory(assignedDriver, pickUp, dropOff, ride.Distance, tripCost);
+
+            assignedDriver.AddTripToHistory(ride);
+            passenger.AddTripToHistory(ride);
             // Display ride details
             Console.WriteLine($"Ride request completed successfully!");
             Console.WriteLine($"Driver assigned: {assignedDriver.Username}, Car: {assignedDriver.Car}, Number Plate: {assignedDriver.NoPlate}");
             Console.WriteLine($"From {pickUp} to {dropOff} at the cost of {tripCost:C}");
             Console.WriteLine($"Distance: {ride.Distance} km");
+            UserManger.Instance.UpdateUserData();
             Console.WriteLine("=====================================");
             //updating th system
-            UserManger.Instance.UpdateUserData();
         }
-
-        private static double CalculateTripAmount(Ride ride)
+        public static void DisplayDriversHistory(Driver driver)
         {
             try
             {
-                ride.TripCost = ride.Distance * ride.RatePerKm;
-                return ride.TripCost;
+                var driversObject = User.userList.OfType<Driver>().FirstOrDefault(u => u.Username == driver.Username);
+                //Checking first if this driver exists
+                if (driversObject == null)
+                {
+                    Console.WriteLine("Driver not found");
+                    return;
+                }
+                //Checking if this driver has history
+                if (driversObject.TripHistory == null || driversObject.TripHistory.Count == 0)
+                {
+                    Console.WriteLine("No history found for this driver");
+                    return;
+                }
+                Console.WriteLine("Here is your drip history");
+                Console.WriteLine("=============================================");
+                foreach (var trip in driversObject.TripHistory)
+                {
+                    Console.WriteLine($"Passenger: {trip.Passenger.Username}| {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
+                }
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred while calculating trip amount: " + ex.Message);
-                return  0;
+                Console.WriteLine($"Sorry but there was a problem loading the history:{ex.Message}");
             }
-        }
 
-        private static double DriversEarnings(Ride ride)
-        {
-            try
-            {
-                double earnings = ride.TripCost * 0.5;
-                ride.Driver.Earnings += earnings;
-                return earnings;
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine($"An error occurred while calculating drivers earnings:{ex.Message}");
-                return 0;
-            }
         }
         private static string GetValidLocation(string prompt, List<string> locations)
         {
@@ -115,12 +102,18 @@ namespace rideSharing.RideRequestSystem
             {
                 Console.WriteLine(prompt);
                 Console.WriteLine("====================================");
-                foreach (var location in locations)
-                {
-                    Console.WriteLine(location);
-                }
+                Console.WriteLine("The avaliable locations are:");
+                Console.WriteLine(string.Join(", ", locations));
+                //foreach (var location in locations)
+                //{
+                //    Console.WriteLine(location);
+                //}
                 string input = Console.ReadLine()?.ToUpper();
-                if (IsValidLocation(input, locations))
+                //if (IsValidLocation(input, locations))
+                //{
+                //    return input;
+                //}
+                if (!string.IsNullOrWhiteSpace(input) && locations.Contains(input))
                 {
                     return input;
                 }
@@ -130,6 +123,7 @@ namespace rideSharing.RideRequestSystem
                 }
             }
         }
+
         private static Driver AssignDriverForPickup(string pickUp)
         {
             try
@@ -158,6 +152,22 @@ namespace rideSharing.RideRequestSystem
             }
 
         }
+    
+        private static double DriversEarnings(Ride ride)
+        {
+            try
+            {
+                double earnings = ride.TripCost * 0.5;
+                ride.Driver.Earnings += earnings;
+                return earnings;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine($"An error occurred while calculating drivers earnings:{ex.Message}");
+                return 0;
+            }
+        }
         public static string DriversCurrentLocation(Driver driver)
         {
             try
@@ -180,16 +190,6 @@ namespace rideSharing.RideRequestSystem
                 Console.WriteLine($"An error occurred while setting the driver's current location:{ex}.Message");
                 return null;
             }
-        }
-        private static bool IsValidLocation(string locationInput, List<string> locations)
-        {
-            if (!locations.Contains(locationInput))
-            {
-                Console.WriteLine($"Error:{locationInput} is a invalid location please try again");
-                return false;
-
-            }
-            return true;
         }
         public static bool DisplayAvaibleDrivers()
         {
@@ -218,45 +218,14 @@ namespace rideSharing.RideRequestSystem
                 return false;
             }
         }
-
-        public static void DisplayDriversHistory(Driver driver)
-        {
-            try
-            {
-                var driversObject = User.userList.OfType<Driver>().FirstOrDefault(u => u.Username == driver.Username);
-                //Checking first if this driver exists
-                if (driversObject == null)
-                {
-                    Console.WriteLine("Driver not found");
-                    return;
-                }
-                //Checking if this driver has history
-                if (driversObject.TripHistory == null || driversObject.TripHistory.Count == 0)
-                {
-                    Console.WriteLine("No history found for this driver");
-                    return;
-                }
-                foreach (var trip in driversObject.TripHistory)
-                {
-                    Console.WriteLine($"From  Passenger {trip.driver}| {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Sorry but there was a problem loading the history:{ex.Message}");
-            }
-
-        }
-
         public static void AddHistoryForDriver(Driver driver,Passenger passenger,string pickup,string dropOff,double distance,double earnings)
         {
-            //var trip = new Ride(driver,passenger, driver, pickup, dropOff)
-            //{
-            //    Distance = distance,
-            //    TripCost = earnings
-            //};
-            //driver.TripHistory.Add(trip);
+            var trip = new Ride(passenger, driver, pickup, dropOff)
+            {
+                Distance = distance,
+                TripCost = earnings
+            };
+            driver.TripHistory.Add(trip);
         }
 
     }

@@ -10,29 +10,15 @@ namespace RideSharing
     {
         public double WalletBalance { get; set; }
 
-        public Passenger(string username, string email, string password, double initialBalance) : base(username, password, email)
+        public Passenger(string username, string email, string password, double initialBalance) 
+            : base(username, password, email)
         {
             Role = "Passenger";
             WalletBalance = initialBalance;
         }
-        public void AddRideToHistory(Driver driver,string pickUp, string dropOff, double distance, double cost)
+        public override void DisplayMenu()
         {
-            // Deduct the cost from the wallet
-            WalletBalance -= cost;
-            // Add the trip to the passenger's history
-            TripHistory.Add((driver,pickUp, dropOff, distance, cost));
-
-            // Find and update the passenger in the user list (ensures persistence in UserManager)
-            var passengerInList = userList.OfType<Passenger>().FirstOrDefault(u => u.Username == this.Username);
-            if (passengerInList != null)
-            {
-                passengerInList.TripHistory = TripHistory;
-                passengerInList.WalletBalance = WalletBalance;
-            }
-            Console.WriteLine($"Ride added to history: Picked up by this driver {driver.Username} {pickUp} to {dropOff}");
-            Console.WriteLine($"Distance: {distance} km | Cost: {cost:C}");
-            Console.WriteLine($"Remaining Wallet Balance: {WalletBalance:C}");
-            UserManger.Instance.UpdateUserData();
+            PassengerMenu.PassengerMainMenu(this);
         }
         public void DisplayRideHistory()
         {
@@ -47,7 +33,7 @@ namespace RideSharing
                 Console.WriteLine("\nTrip History:");
                 foreach (var trip in TripHistory)
                 {
-                    Console.WriteLine($" Picked Up by {trip.driver.Username}| From {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
+                    Console.WriteLine($" Picked Up by {trip.Driver.Username}| From {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
                 }
                 // Total cost of all trips
                 double totalCost = TripHistory.Sum(t => t.Cost);
@@ -68,28 +54,27 @@ namespace RideSharing
             Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
             UserManger.Instance.UpdateUserData();
         }
-        public override void DisplayMenu()
+        public  void RateDriver(Passenger passenger, Driver driver, int stars)
         {
-            PassengerMenu.PassengerMainMenu(this);
-        }
-        public static void RateDriver(Passenger passenger, Driver driver, int stars)
-        {
-            if (stars < 1 || stars > 5)
+            try
             {
-                Console.WriteLine("This is an invalid rating your number must be between 1-5");
-                return;
+                if (stars < 1 || stars > 5)
+                {
+                    Console.WriteLine("This is an invalid rating your number must be between 1-5");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"Thank you for raring your driver {stars} stars");
+                    driver.Ratings.Add(stars);
+                    UserManger.Instance.UpdateUserData();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine($"Thank you for raring your driver {stars} stars");
-                driver.Ratings.Add(stars);
-                UserManger userManager = new UserManger();
-                userManager.UpdateUserData();
+                Console.WriteLine($"An error occurred while rating the driver: + {ex}.Message");
             }
-           
         }
     }
-
-
 
 }

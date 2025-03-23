@@ -40,11 +40,16 @@ namespace RideSharing
 
         public void UpdateLocation(string newLocation)
         {
-            CurrentLocation = newLocation;
+            if (!string.IsNullOrEmpty(newLocation))
+            {
+                CurrentLocation = newLocation;
+                Console.WriteLine($"Location updated to: {CurrentLocation}");
+            }
         }
         public void UpdateAvailablityStatus(bool availabilty)
         {
             isAvailable = availabilty;
+            Console.WriteLine($"Driver availability updated to: {isAvailable}");
         }
         public void AcceptARide(string rideDetails)
         {
@@ -60,7 +65,7 @@ namespace RideSharing
         }
         public void ViewDriverEarnings()
         {
-
+            Console.WriteLine($"Total earnings: {Earnings:C}");
         }
 
 

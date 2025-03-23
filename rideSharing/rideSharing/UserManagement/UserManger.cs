@@ -15,6 +15,7 @@ namespace RideSharing
 
         public static List<Driver> availableDriversList { get; private set; } = new List<Driver>();
 
+
         private const string FilePath = "users.json";
 
         public UserManger()
@@ -24,10 +25,12 @@ namespace RideSharing
         }
         public void saveUsers()
         {
-            //User class is an abstract class so type handling is needed to to deserilize a list of an instance of a abstract class.
             var setting = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.Objects
+                //User class is an abstract class so type handling is needed to to deserilize a list of an instance of a abstract class.
+                TypeNameHandling = TypeNameHandling.Objects,
+                //Since my ride history list has both driver and passenger referencing each other the is a loop induced this so to ignore that
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
             var jsonData = JsonConvert.SerializeObject(User.userList, setting);
             File.WriteAllText(FilePath, jsonData);
@@ -69,7 +72,7 @@ namespace RideSharing
             }
 
         }
-        public void registerDriver(string username, string email, string password, string car, string noPlate,string currentLocation)
+        public void registerDriver(string username, string email, string password, string car, string noPlate, string currentLocation)
         {
             //validating if user already exists in the list
             if (User.userList.Any(user => user.Username == username))
@@ -80,7 +83,7 @@ namespace RideSharing
             else
             {
                 //adds user as an object to the user list 
-                var driver = new Driver(username, email, password, car, noPlate,currentLocation);
+                var driver = new Driver(username, email, password, car, noPlate, currentLocation);
                 User.userList.Add(driver);
                 //updates the json
                 UpdateUserData();
@@ -105,7 +108,7 @@ namespace RideSharing
                 return null;
             }
         }
-        
+
         public static List<Driver> LoadAvaibleDrivers()
         {
             availableDriversList = User.userList.OfType<Driver>().Where(d => d.isAvailable).ToList();

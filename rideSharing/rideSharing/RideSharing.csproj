@@ -50,6 +50,7 @@
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Menus\PassengerMenu.cs" />
     <Compile Include="RideRequestSystem\IRideable.cs" />
+    <Compile Include="RideRequestSystem\ITrip.cs" />
     <Compile Include="RideRequestSystem\Ride.cs" />
     <Compile Include="RideRequestSystem\RideSystem.cs" />
     <Compile Include="UserManagement\Driver.cs" />
