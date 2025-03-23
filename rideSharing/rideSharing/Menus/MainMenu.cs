@@ -60,7 +60,9 @@ namespace RideSharing.Menus
             var user = userManger.Login(username, password);
             if (user != null)
             {
-                Console.WriteLine($"Welcome {username}");
+                Console.WriteLine("============================");
+                Console.WriteLine($"Welcome {user.Role} {username} ");
+                Console.WriteLine("============================");
                 user.DisplayMenu();
             }
             else

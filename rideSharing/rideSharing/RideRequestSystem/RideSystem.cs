@@ -32,7 +32,7 @@ namespace rideSharing.RideRequestSystem
 
             // Create a new Ride object and calculate trip amount
             var ride = new Ride(passenger, null, pickUp, dropOff);
-        
+
             double tripCost = ride.CalculateTripCost();
 
 
@@ -123,7 +123,39 @@ namespace rideSharing.RideRequestSystem
                 }
             }
         }
+        public static void GetAvaliablityStatus(Driver driver)
+        {
 
+            try
+            {
+                Console.WriteLine("If you are avaliable? type 'YES' if not 'NO' ");
+                string status = Console.ReadLine()?.ToUpper().Trim();
+                bool isStatusUpdated = false;
+                while (!isStatusUpdated) {
+                    switch (status)
+                    {
+                        case "YES":
+                            driver.UpdateAvailablityStatus(true);
+                            Console.WriteLine("Your status has been updated to AVAILABLE");
+                            isStatusUpdated = true;
+                            break;
+                        case "NO":
+                            driver.UpdateAvailablityStatus(false);
+                            Console.WriteLine("Your status has been updated to UNAVAILABLE");
+                            isStatusUpdated = true;
+                            break;
+                        default:
+                            Console.WriteLine("That is not a valid selection please type 'YES' OR 'NO'!");
+                            break;
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while trying to to update your status :{ex.Message}");
+            }
+        }
         private static Driver AssignDriverForPickup(string pickUp)
         {
             try
@@ -152,7 +184,7 @@ namespace rideSharing.RideRequestSystem
             }
 
         }
-    
+
         private static double DriversEarnings(Ride ride)
         {
             try
@@ -181,6 +213,9 @@ namespace rideSharing.RideRequestSystem
                 {
                     driverInList.CurrentLocation = selectedLocation;
                 }
+                Console.WriteLine("======================");
+                Console.WriteLine($"Your current location is :{driver.CurrentLocation}");
+                Console.WriteLine("======================");
                 UserManger.Instance.UpdateUserData();
                 return selectedLocation;
             }
@@ -218,7 +253,7 @@ namespace rideSharing.RideRequestSystem
                 return false;
             }
         }
-        public static void AddHistoryForDriver(Driver driver,Passenger passenger,string pickup,string dropOff,double distance,double earnings)
+        public static void AddHistoryForDriver(Driver driver, Passenger passenger, string pickup, string dropOff, double distance, double earnings)
         {
             var trip = new Ride(passenger, driver, pickup, dropOff)
             {

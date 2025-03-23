@@ -49,7 +49,6 @@ namespace RideSharing
         public void UpdateAvailablityStatus(bool availabilty)
         {
             isAvailable = availabilty;
-            Console.WriteLine($"Driver availability updated to: {isAvailable}");
         }
         public void AcceptARide(string rideDetails)
         {

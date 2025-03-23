@@ -27,6 +27,7 @@ namespace rideSharing.Menus
                 {
 
                     case "1":
+
                         break;
                     case "2":
                         break;
@@ -35,6 +36,7 @@ namespace rideSharing.Menus
                     case "4":
                         break;
                     case "5":
+                        RideRequestSystem.RideSystem.GetAvaliablityStatus(driver);
                         break;
                     case "6":
                         RideRequestSystem.RideSystem.DriversCurrentLocation(driver);
