@@ -27,6 +27,7 @@ namespace RideSharing
 
         public override void DisplayMenu()
         {
+            DriverMenu.DriverMainMenu(this);
 
         }
 

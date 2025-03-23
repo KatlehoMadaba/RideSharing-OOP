@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace RideSharing
 {
-    //Management of the users onboarding operations 
+    //Management of the users onboarding operations both driver and passenger
     public class UserManger
     {
         private static readonly UserManger _instance = new UserManger();
@@ -46,7 +46,7 @@ namespace RideSharing
                 User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData,setting);
             }
         }
-
+ 
         public void registerPassenger(string username, string email, string password, double initialBalance)
         {
 
