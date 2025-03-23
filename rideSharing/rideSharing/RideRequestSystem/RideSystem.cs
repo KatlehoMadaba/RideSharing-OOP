@@ -23,8 +23,8 @@ namespace rideSharing.RideRequestSystem
             }
 
         }
-      public static void RequestRide(Passenger passenger,List<string> locations)
-      {
+        public static void RequestRide(Passenger passenger, List<string> locations)
+        {
             bool validRideRequest = false;
             while (!validRideRequest)
             {
@@ -106,5 +106,9 @@ namespace rideSharing.RideRequestSystem
             return true;
         }
 
+        public static void ViewRequests()
+        {
+
+        }
     }
 }
