@@ -49,7 +49,6 @@ namespace RideSharing
                 User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData, setting);
             }
         }
-
         public void registerPassenger(string username, string email, string password, double initialBalance)
         {
 

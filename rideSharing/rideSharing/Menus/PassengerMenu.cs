@@ -26,12 +26,10 @@ namespace rideSharing.Menus
                 switch (option)
                 {
                     case "1":
-                        List<string> locations = new List<string> { "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND" };
-                        RideSystem.RequestRide(passenger,locations);
+                        RideSystem.RequestRide(passenger);
                         break;
                     case "2":
                         Console.WriteLine($"This is your Balance:{passenger.WalletBalance}");
-
                         break;
                     case "3":
                         Console.WriteLine("Please enter how much you want to add:");

@@ -15,12 +15,12 @@ namespace RideSharing
             Role = "Passenger";
             WalletBalance = initialBalance;
         }
-        public void AddRideToHistory(string pickUp, string dropOff, double distance, double cost)
+        public void AddRideToHistory(Driver driver,string pickUp, string dropOff, double distance, double cost)
         {
             // Deduct the cost from the wallet
             WalletBalance -= cost;
             // Add the trip to the passenger's history
-            TripHistory.Add((pickUp, dropOff, distance, cost));
+            TripHistory.Add((driver,pickUp, dropOff, distance, cost));
 
             // Find and update the passenger in the user list (ensures persistence in UserManager)
             var passengerInList = userList.OfType<Passenger>().FirstOrDefault(u => u.Username == this.Username);
@@ -29,11 +29,9 @@ namespace RideSharing
                 passengerInList.TripHistory = TripHistory;
                 passengerInList.WalletBalance = WalletBalance;
             }
-
-            Console.WriteLine($"Ride added to history: {pickUp} to {dropOff}");
+            Console.WriteLine($"Ride added to history: Picked up by this driver {driver.Username} {pickUp} to {dropOff}");
             Console.WriteLine($"Distance: {distance} km | Cost: {cost:C}");
             Console.WriteLine($"Remaining Wallet Balance: {WalletBalance:C}");
-
             UserManger.Instance.UpdateUserData();
         }
         public void DisplayRideHistory()
@@ -49,7 +47,7 @@ namespace RideSharing
                 Console.WriteLine("\nTrip History:");
                 foreach (var trip in TripHistory)
                 {
-                    Console.WriteLine($"From {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
+                    Console.WriteLine($" Picked Up by {trip.driver.Username}| From {trip.PickUp} to {trip.DropOff} | Distance: {trip.Distance} km | Cost: {trip.Cost:C}");
                 }
                 // Total cost of all trips
                 double totalCost = TripHistory.Sum(t => t.Cost);

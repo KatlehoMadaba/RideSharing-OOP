@@ -27,13 +27,25 @@ namespace rideSharing.RideRequestSystem
 
         public string DropOffLocation { get; set; }
 
-        public Ride(Passenger passenger,Driver driver ,string pickupLocation, string dropOffLocation)
+        public double TripCost { get; set; }
+
+        public double RatePerKm { get; set; }
+
+        public double Distance { get; set; }
+
+
+
+        Random random = new Random();
+        public Ride(Passenger passenger, Driver driver, string pickupLocation, string dropOffLocation)
         {
             DropOffLocation = dropOffLocation;
             PickupLocation = pickupLocation;
             Passenger = passenger;
             Driver = driver;
+            RatePerKm = 10.00;
+            Distance = random.Next(5, 101);// Random distance between 5 and 100 km
+            TripCost=Distance*RatePerKm;
         }
-
+        
     }
 }

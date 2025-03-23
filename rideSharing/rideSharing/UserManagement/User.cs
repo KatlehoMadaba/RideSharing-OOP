@@ -18,7 +18,7 @@ namespace RideSharing
 
         public string Role { get; set; }
 
-        public List<(string PickUp, string DropOff, double Distance, double Cost)> TripHistory = new List<(string, string, double, double)>();
+        public List<(Driver driver ,string PickUp, string DropOff, double Distance, double Cost)> TripHistory = new List<(Driver,string, string, double, double)>();
 
         public static List<User> userList = new List<User>();
 
