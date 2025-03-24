@@ -40,16 +40,42 @@ namespace rideSharing.Menus
                         passenger.DisplayRideHistory();
                         break;
                     case "5":
-                        //Console.WriteLine("Please select the driver you want to rate:");
-                        Driver selectedDriver =new Driver("John","John@example.com","password123","Toyta","hefu","hhj");
-                        Console.WriteLine("Please enter start between 1-5");
-                        int stars = Convert.ToInt32(Console.ReadLine());
-                        passenger.RateDriver( passenger ,selectedDriver,stars);
+                        //checking if the passenger has a trip history
+                        if (passenger.TripHistory.Count == 0)
+                        {
+                            Console.WriteLine("You cannot rate a driver because you have no ride history.");
+                            break;
+                        }
+                        //Allowing the passenger select the driver they want to rate 
+                        Console.WriteLine("Select a trip to rate the driver from your ride history:");
+                        for (int i = 0; i < passenger.TripHistory.Count; i++)
+                        {
+                            var trip = passenger.TripHistory[i];
+                            Console.WriteLine($"{i + 1}. Driver: {trip.Driver.Username}, From: {trip.PickUp} to {trip.DropOff}, Cost: {trip.Cost:C}");
+                        }
+                        //Allowing the user to select the trip they want to rate 
+                        Console.WriteLine("Enter the number of the trip to rate the driver:");
+                        int tripChoice;
+                        while (!int.TryParse(Console.ReadLine(), out tripChoice) || tripChoice < 1 || tripChoice > passenger.TripHistory.Count)
+                        {
+                            Console.WriteLine("Invalid input. Please enter a valid number.");
+                        }
+
+                        //giving the passenger the option to enter the rating 
+                        var selectedTrip = passenger.TripHistory[tripChoice - 1];
+                        Console.WriteLine($"You selected Driver: {selectedTrip.Driver.Username}. Enter a rating between 1 and 5:");
+                        int rating;
+                        while (!int.TryParse(Console.ReadLine(), out rating) || rating < 1 || rating > 5)
+                        {
+                            Console.WriteLine("Invalid input. Please enter a rating between 1 and 5.");
+                        }
+
+                        passenger.RateDriver(selectedTrip.Driver, rating);
                         break;
                     case "0":
                         break;
                     default:
-                        Console.WriteLine("Please enter valid option");
+                        Console.WriteLine("Please enter valid option between numbers 0-5");
                         break;
                 }
             } while (option != "0");

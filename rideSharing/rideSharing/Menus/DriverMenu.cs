@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using rideSharing.RideRequestSystem;
 using RideSharing;
 namespace rideSharing.Menus
 {
@@ -27,10 +28,13 @@ namespace rideSharing.Menus
                 {
 
                     case "1":
+                        RideRequestSystem.RideSystem.ViewAvailableRequests(driver, RideSystem.AvailableRides);
                         break;
                     case "2":
+                        RideRequestSystem.RideSystem.AcceptRide(driver, RideSystem.AvailableRides);
                         break;
                     case "3":
+                        Driver.CompleteRide(driver);
                         break;
                     case "4":
                         Console.WriteLine($"Your total earnings are:{driver.Earnings:C}");
@@ -52,6 +56,8 @@ namespace rideSharing.Menus
                 }
             }
             while (option != "0");
-        }
+        }    
     }
+
+
 }

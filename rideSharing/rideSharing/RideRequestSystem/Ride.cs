@@ -26,14 +26,9 @@ namespace rideSharing.RideRequestSystem
 
         public double Distance { get; set; }
 
+        public string Status { get; set; } = "Pending";
+
         private static readonly Random random = new Random();
-
-
-        public override string ToString()
-        {
-            return $"Driver: {Driver.Username}, Passenger: {Passenger.Username}, From {PickUp} to {DropOff}, Distance: {Distance} km, Cost: {Cost:C}";
-        }
-
         public Ride(Passenger passenger, Driver driver, string pickUp, string dropOff)
         {
             DropOff = dropOff;
@@ -49,7 +44,7 @@ namespace rideSharing.RideRequestSystem
             try
             {
 
-            return Distance * RatePerKm;
+                return Distance * RatePerKm;
             }
             catch (Exception ex)
             {
@@ -58,8 +53,7 @@ namespace rideSharing.RideRequestSystem
                 return 0;
             }
         }
-        //have the locations be publicly accessiably to every member
-
+        //Locations that everyone is limited to
         public static readonly List<string> ValidLocations = new List<string>
         {
             "CENTURION", "PRETORIA", "JHB", "HATFIELD", "MIDRAND"

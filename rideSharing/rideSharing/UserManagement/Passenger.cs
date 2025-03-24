@@ -54,7 +54,7 @@ namespace RideSharing
             Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
             UserManger.Instance.UpdateUserData();
         }
-        public  void RateDriver(Passenger passenger, Driver driver, int stars)
+        public  void RateDriver(Driver driver, int stars)
         {
             try
             {
@@ -65,7 +65,8 @@ namespace RideSharing
                 }
                 else
                 {
-                    Console.WriteLine($"Thank you for raring your driver {stars} stars");
+                    Console.WriteLine("================================================");
+                    Console.WriteLine($"Thank you for rating your driver {stars} stars");
                     driver.Ratings.Add(stars);
                     UserManger.Instance.UpdateUserData();
                 }

@@ -28,7 +28,9 @@ namespace RideSharing
 
         public virtual bool Login(string username, string password)
         {
+
             return Username == username && Password == password;
+
         }
 
         public void AddTripToHistory(ITrip trip)

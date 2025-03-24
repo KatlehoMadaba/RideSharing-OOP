@@ -15,7 +15,6 @@ namespace RideSharing
 
         public static List<Driver> availableDriversList { get; private set; } = new List<Driver>();
 
-
         private const string FilePath = "users.json";
 
         public UserManger()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using rideSharing.Menus;
+using rideSharing.RideRequestSystem;
 
 namespace RideSharing
 {
@@ -28,9 +29,9 @@ namespace RideSharing
         {
             try
             {
-            Console.WriteLine("===================================");
-            Console.WriteLine($"Total earnings: {driver.Earnings:C}");
-            Console.WriteLine("===================================");
+                Console.WriteLine("===================================");
+                Console.WriteLine($"Total earnings: {driver.Earnings:C}");
+                Console.WriteLine("===================================");
             }
             catch (Exception ex)
             {
@@ -61,18 +62,40 @@ namespace RideSharing
         {
             isAvailable = availabilty;
         }
-        public void AcceptARide(string rideDetails)
+        public static void CompleteRide(Driver driver)
         {
-            if (!isAvailable)
+            try
             {
-                Console.WriteLine($"Accpected ride:{rideDetails}");
-                isAvailable = false;
+                Console.WriteLine("Did you just complete a ride ? Type Yes OR NO");
+                string status = Console.ReadLine()?.ToUpper().Trim();
+                bool isComplete = false;
+                while (!isComplete)
+                {
+                    switch (status)
+                    {
+                        case "YES":
+                            driver.UpdateAvailablityStatus(true);
+                            Console.WriteLine("Thank you for completing your ride");
+                            isComplete = true;
+                            break;
+                        case "NO":
+                            driver.UpdateAvailablityStatus(false);
+                            Console.WriteLine("Your status has been updated to UNAVAILABLE");
+                            isComplete = true;
+                            break;
+                        default:
+                            Console.WriteLine("That is not a valid selection please type 'YES' OR 'NO'!");
+                            break;
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("Driver is currrent unavailable");
+
+                Console.WriteLine($"An error occured updating your completion status :{ex.Message}");
             }
         }
     }
+
 }
 
