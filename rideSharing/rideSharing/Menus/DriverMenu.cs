@@ -27,13 +27,13 @@ namespace rideSharing.Menus
                 {
 
                     case "1":
-
                         break;
                     case "2":
                         break;
                     case "3":
                         break;
                     case "4":
+                        Console.WriteLine($"Your total earnings are:{driver.Earnings:C}");
                         break;
                     case "5":
                         RideRequestSystem.RideSystem.GetAvaliablityStatus(driver);

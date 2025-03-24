@@ -9,9 +9,6 @@ namespace rideSharing.RideRequestSystem
     //  Any thing the system returns to the user whether driver or passenger
     public class RideSystem
     {
-
-        //public static List<string> locations = RideLocations.ValidLocations;
-
         public static List<string> locations = Ride.ValidLocations;
 
         public static void RequestRide(Passenger passenger)
@@ -56,6 +53,8 @@ namespace rideSharing.RideRequestSystem
 
             assignedDriver.AddTripToHistory(ride);
             passenger.AddTripToHistory(ride);
+            //update the earnings of the driver 
+            CalculateDriversEarnings(ride);
             // Display ride details
             Console.WriteLine($"Ride request completed successfully!");
             Console.WriteLine($"Driver assigned: {assignedDriver.Username}, Car: {assignedDriver.Car}, Number Plate: {assignedDriver.NoPlate}");
@@ -184,14 +183,23 @@ namespace rideSharing.RideRequestSystem
             }
 
         }
-
-        private static double DriversEarnings(Ride ride)
+        private static double CalculateDriversEarnings(Ride ride)
         {
             try
             {
-                double earnings = ride.TripCost * 0.5;
-                ride.Driver.Earnings += earnings;
-                return earnings;
+                double earnings = ride.Cost * 0.5;
+                var driversList = User.userList.OfType<Driver>().ToList().FirstOrDefault(d => d.Username == ride.Driver.Username);
+                if (driversList != null)
+                {
+                    driversList.Earnings += earnings;
+                    Console.WriteLine($"Drivers {ride.Driver.Username}'s updated  totals earnings are: {ride.Driver.Username} ");
+                }
+                else 
+                {
+                    Console.WriteLine($"Driver {ride.Driver.Username} you were not found oon the list for earnings.");
+                }
+                    return earnings;
+
             }
             catch (Exception ex)
             {
@@ -200,6 +208,7 @@ namespace rideSharing.RideRequestSystem
                 return 0;
             }
         }
+
         public static string DriversCurrentLocation(Driver driver)
         {
             try
@@ -258,7 +267,7 @@ namespace rideSharing.RideRequestSystem
             var trip = new Ride(passenger, driver, pickup, dropOff)
             {
                 Distance = distance,
-                TripCost = earnings
+                Cost = earnings
             };
             driver.TripHistory.Add(trip);
         }

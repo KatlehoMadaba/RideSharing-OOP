@@ -24,20 +24,31 @@ namespace RideSharing
             CurrentLocation = currentLocation;
             Earnings = 0;
         }
+        public static void ViewDriverEarnings(Driver driver)
+        {
+            try
+            {
+            Console.WriteLine("===================================");
+            Console.WriteLine($"Total earnings: {driver.Earnings:C}");
+            Console.WriteLine("===================================");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occured while fetching your earnings : {ex.Message}");
+            }
+        }
 
         public override void DisplayMenu()
         {
             DriverMenu.DriverMainMenu(this);
 
         }
-
         public double GetAverageRating()
         {
             if (Ratings.Count == 0)
                 return 0;
             return Ratings.Average();
         }
-
         public void UpdateLocation(string newLocation)
         {
             if (!string.IsNullOrEmpty(newLocation))
@@ -62,12 +73,6 @@ namespace RideSharing
                 Console.WriteLine("Driver is currrent unavailable");
             }
         }
-        public void ViewDriverEarnings()
-        {
-            Console.WriteLine($"Total earnings: {Earnings:C}");
-        }
-
-
     }
 }
 
