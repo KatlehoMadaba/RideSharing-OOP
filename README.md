@@ -2,7 +2,7 @@
 Ride-Sharing-System : Allow passengers to request rides, drivers to accept rides, administrators to manage the platform using OOP 
 
 ## Overview
-This project is a console-based ride-sharing system designed to simulate core functionalities of a real-world ride-sharing platform. It allows passengers to request rides, drivers to accept rides, and includes features like payment simulation, ratings, and exception handling. Built using C# with object-oriented programming principles, LINQ queries, and a menu-driven interface.
+This project is a console-based ride-sharing system designed to simulate core functionalities of a real-world ride-sharing platform. It allows passengers to request rides, drivers to accept rides, and includes features like payment simulation, ratings, and exception handling. Built using C# with object-oriented programming principles, LINQ queries, and a menu-driven interface.Having a json file as external storage.
 ---
 ### Implemented Features
 - *User Management*  
