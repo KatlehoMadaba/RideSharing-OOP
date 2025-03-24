@@ -27,4 +27,4 @@ This project is a console-based ride-sharing system designed to simulate core fu
 ## Installation
 1. Ensure [.NET SDK](https://dotnet.microsoft.com/download) is installed.  
 2. Clone the repository:  
-   ```bash https://github.com/KatlehoMadaba/RideSharing-OOP
+   https://github.com/KatlehoMadaba/RideSharing-OOP
