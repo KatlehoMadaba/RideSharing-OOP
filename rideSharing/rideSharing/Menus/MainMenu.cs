@@ -24,15 +24,19 @@ namespace RideSharing.Menus
         {
             Console.WriteLine("Please enter your username:");
             string username = Console.ReadLine();
+            if (RideSystem.UsernameValidation(username))
+            {
+                return;
+            }
             Console.WriteLine("Please your email:");
             string email = Console.ReadLine();
             Console.WriteLine("Please your password:");
             string password = Console.ReadLine();
             Console.WriteLine("Please enter how much you will be adding to your account:");
-            double intialBalance = Convert.ToDouble(Console.ReadLine());
-            if (double.TryParse(Console.ReadLine(), out double initialBalance)&& initialBalance >0)
+            double initialBalance = Convert.ToDouble(Console.ReadLine());
+            if (double.TryParse(Console.ReadLine(), out initialBalance) && initialBalance >0)
             {
-                userManger.registerPassenger(username, email, password, initialBalance);
+                userManger.RegisterPassenger(username, email, password, initialBalance);
             }
             else
             {
@@ -44,6 +48,10 @@ namespace RideSharing.Menus
         {
             Console.WriteLine("Please enter your username");
             string username = Console.ReadLine();
+            if (RideSystem.UsernameValidation(username))
+            {
+                return;
+            }
             Console.WriteLine("Please your email:");
             string email = Console.ReadLine();
             Console.WriteLine("Please your password:");
@@ -55,7 +63,7 @@ namespace RideSharing.Menus
             Console.Write("Please choose your current location:");
             var tempdriver = new Driver(username, email, password, car, noPlate, string.Empty);
             string currentLocation = RideSystem.DriversCurrentLocation(tempdriver);
-            userManger.registerDriver(username, email, password, car, noPlate, currentLocation);
+            userManger.RegisterDriver(username, email, password, car, noPlate, currentLocation);
         }
 
         public static void DisplayLoginMenu(UserManger userManger)

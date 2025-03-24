@@ -15,6 +15,6 @@ namespace rideSharing.RideRequestSystem
         string DropOff { get; set; }
         double Distance { get; set; }
         double Cost { get; set; }
-        string Status { get; set; }
+        string Status {  get; set; }
     }
 }

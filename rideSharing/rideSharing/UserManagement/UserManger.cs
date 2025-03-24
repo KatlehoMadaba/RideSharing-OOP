@@ -51,14 +51,13 @@ namespace RideSharing
                 User.userList = JsonConvert.DeserializeObject<List<User>>(jsonData, setting);
             }
         }
-        public void registerPassenger(string username, string email, string password, double initialBalance)
+        public void RegisterPassenger(string username, string email, string password, double initialBalance)
         {
 
             //validating if user already exists in the list
             if (User.userList.Any(user => user.Username == username))
             {
                 Console.WriteLine("Username already exists");
-                return;
             }
             else
             {
@@ -71,13 +70,12 @@ namespace RideSharing
             }
 
         }
-        public void registerDriver(string username, string email, string password, string car, string noPlate, string currentLocation)
+        public void RegisterDriver(string username, string email, string password, string car, string noPlate, string currentLocation)
         {
             //validating if user already exists in the list
             if (User.userList.Any(user => user.Username == username))
             {
                 Console.WriteLine("Username already exists");
-                return;
             }
             else
             {
@@ -107,7 +105,7 @@ namespace RideSharing
                 return null;
             }
         }
-
+        
         public static List<Driver> LoadAvaibleDrivers()
         {
             availableDriversList = User.userList.OfType<Driver>().Where(d => d.isAvailable).ToList();

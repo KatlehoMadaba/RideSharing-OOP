@@ -5,7 +5,7 @@ using RideSharing;
 namespace rideSharing.Menus
 {
     //Displays thh passanger menu
-    public class PassengerMenu
+    public static class PassengerMenu
     {
         public static void PassengerMainMenu(Passenger passenger)
         {
