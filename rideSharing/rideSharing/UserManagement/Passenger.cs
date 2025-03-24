@@ -25,7 +25,6 @@ namespace RideSharing
             if (TripHistory.Count == 0)
             {
                 Console.WriteLine("\nNo trip history avaialble");
-                return;
             }
             else
             {
@@ -54,7 +53,7 @@ namespace RideSharing
             Console.WriteLine($"{amount:C} added to your wallet. New Balance: {WalletBalance:C}");
             UserManger.Instance.UpdateUserData();
         }
-        public  void RateDriver(Driver driver, int stars)
+        public void RateDriver(Driver driver, int stars)
         {
             try
             {

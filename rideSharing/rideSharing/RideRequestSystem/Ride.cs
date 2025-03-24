@@ -10,26 +10,7 @@ namespace rideSharing.RideRequestSystem
     public class Ride : ITrip
     {
 
-        public Passenger Passenger { get; set; }
-
-        public Driver Driver { get; set; }
-
-        public string PickUp { get; set; }
-
-        public string DropOff { get; set; }
-
-        //public double TripCost { get; set; }
-
-        public double RatePerKm { get; set; }
-
-        public double Cost { get; set; }
-
-        public double Distance { get; set; }
-
-        public string Status { get; set; } = "Pending";
-
-        private static readonly Random random = new Random();
-        public Ride(Passenger passenger, Driver driver, string pickUp, string dropOff)
+        public Ride(int id,Passenger passenger, Driver driver, string pickUp, string dropOff)
         {
             DropOff = dropOff;
             Driver = driver;
@@ -38,7 +19,22 @@ namespace rideSharing.RideRequestSystem
             RatePerKm = 10.00;
             Distance = random.Next(5, 101);// Random distance between 5 and 100 km
             Cost = CalculateTripCost();
+            Id = id;
         }
+        public Driver Driver { get; set; }
+        public string DropOff { get; set; }
+        public int Id { get; set; }
+        public Passenger Passenger { get; set; }
+        public string PickUp { get; set; }
+        public double RatePerKm { get; set; }
+       
+        public double Cost { get; set; }
+
+        public double Distance { get; set; }
+
+        public string Status { get; set; } = "Pending";
+
+        private static readonly Random random = new Random();
         public double CalculateTripCost()
         {
             try

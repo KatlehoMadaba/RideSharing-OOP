@@ -49,7 +49,6 @@
     <Compile Include="Menus\DriverMenu.cs" />
     <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Menus\PassengerMenu.cs" />
-    <Compile Include="RideRequestSystem\IRideable.cs" />
     <Compile Include="RideRequestSystem\ITrip.cs" />
     <Compile Include="RideRequestSystem\Ride.cs" />
     <Compile Include="RideRequestSystem\RideSystem.cs" />
@@ -65,8 +64,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PaymentSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

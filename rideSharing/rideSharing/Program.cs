@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using RideSharing.Menus;
 namespace RideSharing
 {
-    class Program
+    public static class  Program
     {
         static void Main(string[] args)
         {
